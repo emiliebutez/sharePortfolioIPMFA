@@ -6,37 +6,25 @@
 
 package tp04.metier;
 
- import java.util.HashMap;
-import java.util.Objects;
-
+ 
 public class
 
 Cours {
-    private float numeroCours;
+   private Jour jour;
 
-    public Cours(float numeroCours) {
-        this.numeroCours = numeroCours;
-    }
+        private float valeur;
 
-    public float getNumeroCours() {
-        return numeroCours;
-    }
+        public float getValeur() {
+            return valeur;
+        }
+        
+        public Jour getJour() {
+            return jour;
+        }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cours cours = (Cours) o;
-        return Float.compare(cours.numeroCours, numeroCours) == 0;
-    }
+        public Cours(Jour jour, float valeur) {
+            this.jour = jour;
+            this.valeur = valeur;
+        }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(numeroCours);
     }
-
-    @Override
-    public String toString() {
-        return String.valueOf(numeroCours);
-    }
-}
