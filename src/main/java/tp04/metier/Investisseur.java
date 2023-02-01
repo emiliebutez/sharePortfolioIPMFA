@@ -15,6 +15,9 @@
  */
 package tp04.metier;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  *
  * @author Emilie
@@ -39,7 +42,7 @@ public class Investisseur {
   /**
    * Portfeuille de l'investisseur.
    */
-  private Portefeuille portefeuilleI;
+  private ArrayList<Portefeuille> portefeuilles = new ArrayList<>();
 
   /**
    * Constructeur de la classe Investisseur.
@@ -49,13 +52,11 @@ public class Investisseur {
    * @param emailI Adresse mail de l'investisseur.
    * @param portefeuilleI Portefeuille de l'investisseur.
    */
-  public Investisseur(int codeI, String nomI, String prenomI, String emailI,
-          Portefeuille portefeuilleI) {
+  public Investisseur(int codeI, String nomI, String prenomI, String emailI) {
     this.codeI = codeI;
     this.nomI = nomI;
     this.prenomI = prenomI;
     this.emailI = emailI;
-    this.portefeuilleI = portefeuilleI;
   }
 
   /**
@@ -126,27 +127,30 @@ public class Investisseur {
    * Récupère le portefeuille de l'investisseur.
    * @return Le portefeuille de l'investisseur.
    */
-  public Portefeuille getPortefeuilleI() {
-    return portefeuilleI;
+  public Portefeuille getPortefeuilleI(int index) {
+    return this.portefeuilles.get(index);
   }
 
   /**
    * Définit le portefeuille de l'investisseur.
    * @param portefeuilleI Le portefeuille de l'investisseur.
    */
-  public void setPortefeuilleI(Portefeuille portefeuilleI) {
-    this.portefeuilleI = portefeuilleI;
+  public void setPortefeuilleI(Portefeuille portefeuilleI, int index) {
+    this.portefeuilles.set(index, portefeuilleI);
   }
 
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(codeI, nomI, prenomI, emailI, portefeuilles);
   }
 
   @Override
-  public boolean equals(Object obj) {
-    return super.equals(obj);
-  }
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Investisseur that = (Investisseur) o;
+      return codeI == that.codeI && nomI.equals(that.nomI) && prenomI.equals(that.prenomI) && emailI.equals(that.emailI) && Objects.equals(portefeuilles, that.portefeuilles);
+    }
 
   @Override
   public String toString() {
