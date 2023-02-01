@@ -153,7 +153,12 @@ public class Investisseur {
     }
 
   @Override
-  public String toString() {
-    return super.toString();
-  }
+    public String toString() {
+      return "Investisseur{" +
+              "codeI=" + codeI +
+              ", nomI='" + nomI + '\'' +
+              ", prenomI='" + prenomI + '\'' +
+              ", emailI='" + emailI + '\'' +
+              '}';
+    }
 }

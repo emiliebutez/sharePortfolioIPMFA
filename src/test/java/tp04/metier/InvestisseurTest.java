@@ -135,4 +135,14 @@ public class InvestisseurTest {
     Assertions.assertTrue(testI1.hashCode() == testI2.hashCode());
   }
   
+  public void toStringTest(){
+    final Investisseur testI = new Investisseur(EXPECTED_CODE, EXPECTED_NOM, EXPECTED_PRENOM, EXPECTED_EMAIL);
+    Assertions.assertEquals("Investisseur{" +
+              "codeI=" + EXPECTED_CODE +
+              ", nomI='" + EXPECTED_NOM + '\'' +
+              ", prenomI='" + EXPECTED_PRENOM + '\'' +
+              ", emailI='" + EXPECTED_EMAIL + '\'' +
+              '}', testI.toString());
+  }
+  
 }
