@@ -6,10 +6,37 @@
 
 package tp04.metier;
 
-/**
- *
- * @author perussel
- */
-public class Cours {
-    
+ import java.util.HashMap;
+import java.util.Objects;
+
+public class
+
+Cours {
+    private float numeroCours;
+
+    public Cours(float numeroCours) {
+        this.numeroCours = numeroCours;
+    }
+
+    public float getNumeroCours() {
+        return numeroCours;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cours cours = (Cours) o;
+        return Float.compare(cours.numeroCours, numeroCours) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numeroCours);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(numeroCours);
+    }
 }
