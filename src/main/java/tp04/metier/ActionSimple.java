@@ -32,11 +32,11 @@ public class ActionSimple extends Action {
         if(this.mapCours.containsKey(j) == false)
             this.mapCours.put(j, new Cours(j, v));
     }
-    // a partir d une action et un jours recuperer le cours 
-  public float getCours (Jour j){
-    return this.mapCours.get(j).getValeur();
-  }
+    // Recuperer le cours d'une action en fonction d'une action et un jour
+ 
    
+  
+  
   
     
     @Override
@@ -45,7 +45,17 @@ public class ActionSimple extends Action {
             return this.mapCours.get(j).getValeur();
         else 
             return 0; // definition d'une constante possible
-    } }
+    }
+
+  @Override
+  public float getCours(Jour j) {
+    return this.mapCours.get(j).getValeur();
+  }
+
+ 
+
+  
+}
   
     
 

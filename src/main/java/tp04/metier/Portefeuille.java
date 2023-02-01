@@ -77,4 +77,14 @@ public class Portefeuille {
         }
         return total;
     }
-}
+    
+    
+    /** retoune le Montant total des valeur des actions du porte feuille */
+    public float getMontantPF(Jour j) {
+      float valeur = 0;
+      for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet()) {
+        System.out.println("Action:"+mapEntry.getKey().getLibelle()+"qte:"+mapEntry.getValue().getQte()+"valeur"+mapEntry.getValue().getAction().getCours(j));
+         valeur = valeur + mapEntry.getValue().getAction().getCours(j);
+      }    
+    return valeur;
+    }}
