@@ -9,6 +9,7 @@ package tp04.metier;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  *
  * @author perussel
@@ -31,6 +32,12 @@ public class ActionSimple extends Action {
         if(this.mapCours.containsKey(j) == false)
             this.mapCours.put(j, new Cours(j, v));
     }
+    // a partir d une action et un jours recuperer le cours 
+  public float getCours (Jour j){
+    return this.mapCours.get(j).getValeur();
+  }
+   
+  
     
     @Override
     public float valeur(Jour j) {
