@@ -42,8 +42,12 @@ public class ActionComposee extends Action {
 
   @Override
   public float getCours(Jour j) {
-    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    return this.valeur(j);
   }
+
+  @Override
+  public boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte) {
+return true;  }
     
     
 }

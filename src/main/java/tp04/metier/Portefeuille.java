@@ -12,7 +12,60 @@ import java.util.Map;
  *
  * @author perussel
  */
+
 public class Portefeuille {
+<<<<<<< HEAD
+     private float solde;
+    Map<Action, LignePortefeuille> mapLignes;
+    
+    private class LignePortefeuille {
+        
+        private Action action;
+        
+        private int qte;
+        
+        
+        
+        public int getQte() {
+            return qte;
+        }
+        
+        public void setQte(int qte) {
+            this.qte = qte;
+        }
+        
+        
+        
+        public Action getAction() {
+            return this.action;
+        }
+        
+        
+        
+        
+        public LignePortefeuille(Action action, int qte) {
+            this.action = action;
+            this.qte = qte;
+            
+        }
+
+        public String toString() {
+            return Integer.toString(qte);
+        }
+    }
+    
+    public Portefeuille(float solde) {
+        this.mapLignes = new HashMap();
+        this.solde = solde;
+    }
+    
+    public void acheter(Action a, int q) {
+        if (this.mapLignes.containsKey(a) == false) {
+            this.mapLignes.put(a, new LignePortefeuille(a, q));
+        } else {
+            this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+        }
+=======
   //Liste des action du portefeuille
 
   Map<Action, LignePortefeuille> mapLignes;
@@ -27,6 +80,7 @@ public class Portefeuille {
 
     public int getQte() {
       return qte;
+>>>>>>> 030da7aa560af37eadc94adcb97cd5ba17c257b3
     }
 
     public void setQte(int qte) {
@@ -110,6 +164,46 @@ public class Portefeuille {
       System.out.println("Action:" + mapEntry.getKey().getLibelle() + "qte:" + mapEntry.getValue().getQte() + "valeur" + mapEntry.getValue().getAction().getCours(j));
       valeur = valeur + mapEntry.getValue().getAction().getCours(j);
     }
+<<<<<<< HEAD
+    
+   
+    /**
+     * retoune les informations d 'un porte feuille à un jour donné
+     * @param j Jour
+     * @return 
+     */
+    public float getMontantPF(Jour j) {
+      float valeurTotal = 0;
+      float valeur = 0;
+      float qte =0;
+      float valeurTotalAction = 0;
+      for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet()) {
+        valeur = 0;
+        valeur = mapEntry.getValue().getAction().getCours(j); 
+        qte = +mapEntry.getValue().getQte();
+        valeurTotal = valeurTotal + (valeur*qte );
+        valeurTotalAction =  valeur * qte;
+        System.out.println("Action: "+mapEntry.getKey().getLibelle()+"   qte:"+mapEntry.getValue().getQte()+"   valeur"+mapEntry.getValue().getAction().getCours(j) +"  valeurTotalAction:"+valeurTotalAction);
+
+         
+      }    
+    return valeurTotal;
+    }
+    /**
+     * getter pour solde
+     */
+  public void setSolde() {
+            this.solde = solde; 
+        }
+  /**
+   * setter pour solde
+   * @return solde
+   */
+  public float getSolde() {
+            return this.solde;
+        }
+=======
     return valeur;
   }
+>>>>>>> 030da7aa560af37eadc94adcb97cd5ba17c257b3
 }
