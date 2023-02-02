@@ -62,7 +62,9 @@ public class ActionComposeeTest {
     }
     assertNotEquals(1.2f, sommePourcentage);
   }
-
+/**
+ * Test on ne peut pas enregistrerplus que 100% d'action
+ */
   @Test
   public void ActionComposee100ShouldPass() {
     ActionComposee aC1 = new ActionComposee("GAFAM");
@@ -80,4 +82,37 @@ public class ActionComposeeTest {
     }
     assertNotEquals(1f, sommePourcentage);
   }  
+  /**
+  * Test connaitre la valeur de l'action compose
+  */
+  @Test
+  public void GetCoursACShouldPass() {
+    ActionComposee aC1 = new ActionComposee("GAFAM");
+
+    ActionSimple a1 = new ActionSimple("Google");
+    ActionSimple a2 = new ActionSimple("Facebook");
+    
+    Jour j1 = new Jour(2023, 20);
+    a1.enrgCours(j1, 5f);
+    a2.enrgCours(j1, 5f);
+
+    aC1.enrgComposition(a1, 0.3f);
+    aC1.enrgComposition(a2, 0.4f);
+    
+    assertEquals(3.5f,aC1.getCours(j1));
+  } 
+  @Test
+  public void ValueACShouldPass() {
+    ActionComposee aC1 = new ActionComposee("GAFAM");
+
+    ActionSimple a1 = new ActionSimple("Google");
+    ActionSimple a2 = new ActionSimple("Facebook");
+    
+    Jour j1 = new Jour(2023, 20);
+
+    aC1.enrgComposition(a1, 0.3f);
+    aC1.enrgComposition(a2, 0.4f);
+    
+    assertEquals(0.7f,aC1.valeur(j1));
+  }
 }
