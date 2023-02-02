@@ -23,6 +23,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author louis
  */
 public class PortefeuilleTest {
+  
+  private static final Entreprise testE = new Entreprise("Apple");
 
   public PortefeuilleTest() {
   }
@@ -38,7 +40,7 @@ public class PortefeuilleTest {
   public void AcheterShouldPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1);
 
@@ -52,7 +54,7 @@ public class PortefeuilleTest {
   public void AcheterShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, -10);
     assertNotEquals(-50, p1.valeur(j1));
@@ -65,7 +67,7 @@ public class PortefeuilleTest {
   public void VendreEqualsShouldPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1);
     p1.vendre(a1, 1);
@@ -80,7 +82,7 @@ public class PortefeuilleTest {
   public void VendreShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1);
     p1.vendre(a1, 2);
@@ -95,7 +97,7 @@ public class PortefeuilleTest {
   public void VendreShouldPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 2);
     p1.vendre(a1, 1);

@@ -20,9 +20,9 @@ public class ActionSimple extends Action {
     private Map<Jour, Cours> mapCours;
     
     // constructeur
-    public ActionSimple(String libelle) {
+    public ActionSimple(String libelle, Entreprise entreprise) {
         // Action simple initialisée comme 1 action
-        super(libelle);
+        super(libelle, entreprise);
         // init spécifique
         this.mapCours = new HashMap();
     }
