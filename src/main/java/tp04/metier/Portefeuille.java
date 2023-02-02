@@ -16,10 +16,15 @@ import java.util.Map;
 public class Portefeuille {
      private float solde;
     Map<Action, LignePortefeuille> mapLignes;
+    /**
+     * Investisseur a qui appartient l'entreprise.
+     */
+    private Investisseur invest;
     
-    public Portefeuille(float solde) {
+    public Portefeuille(float solde, Investisseur invest) {
         this.mapLignes = new HashMap();
         this.solde = solde;
+        this.invest = invest;
     }
   //Liste des action du portefeuille
 
@@ -68,9 +73,11 @@ public class Portefeuille {
     } else if (this.mapLignes.containsKey(a) == false)
     {
       this.mapLignes.put(a, new LignePortefeuille(a, q));
+      a.getEntreprise().ajouterInvestisseur(this.invest);
     } else
     {
       this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+      a.getEntreprise().ajouterInvestisseur(this.invest);
     }
   }
 
@@ -138,5 +145,13 @@ public class Portefeuille {
    */
   public float getSolde() {
     return this.solde;
+  }
+
+  /**
+   * Récupère l'investisseur à qui appartient le portefeuille.
+   * @return L'investisseur à qui appartient le portefeuille.
+   */
+  public Investisseur getInvest() {
+    return invest;
   }
 }
