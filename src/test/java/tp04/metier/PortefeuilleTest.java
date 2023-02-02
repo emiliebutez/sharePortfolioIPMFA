@@ -29,10 +29,6 @@ public class PortefeuilleTest {
   public PortefeuilleTest() {
   }
 
-  @Test
-  public void testSomeMethod() {
-  }
-
   /**
    * Acheter une quantité
    */

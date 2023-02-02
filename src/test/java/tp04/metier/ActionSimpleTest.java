@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Emilie
  */
 public class ActionSimpleTest {
-    
-    public ActionSimpleTest() {
-    }
 
-    @org.junit.jupiter.api.Test
-    public void testSomeMethod() {
-    }
-    
+  public ActionSimpleTest() {
+  }
+
+  @org.junit.jupiter.api.Test
+  public void testSomeMethod() {
+  }
+
 }

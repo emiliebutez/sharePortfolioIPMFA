@@ -3,28 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package tp04.metier;
 
- 
-public class
+public class Cours {
 
-Cours {
-   private Jour jour;
+  private Jour jour;
 
-        private float valeur;
+  private float valeur;
 
-        public float getValeur() {
-            return valeur;
-        }
-        
-        public Jour getJour() {
-            return jour;
-        }
+  public float getValeur() {
+    return valeur;
+  }
 
-        public Cours(Jour jour, float valeur) {
-            this.jour = jour;
-            this.valeur = valeur;
-        }
+  public Jour getJour() {
+    return jour;
+  }
 
-    }
+  public Cours(Jour jour, float valeur) {
+    this.jour = jour;
+    this.valeur = valeur;
+  }
+
+}
