@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author louis
  */
 public class ActionComposeeTest {
+  static final Entreprise ENTREPRISE = new Entreprise("Entreprise1");
 
   public ActionComposeeTest() {
   }
@@ -32,9 +33,9 @@ public class ActionComposeeTest {
    */
   @Test
   public void ActionComposeeShouldPass() {
-    ActionComposee aC1 = new ActionComposee("GAFAM");
+    ActionComposee aC1 = new ActionComposee("GAFAM", ENTREPRISE);
 
-    ActionSimple a1 = new ActionSimple("Google");
+    ActionSimple a1 = new ActionSimple("Google", ENTREPRISE);
     // ActionSimple a2 = new ActionSimple("Facebook");
     //ActionSimple a3 = new ActionSimple("Amazon");
 
@@ -47,11 +48,11 @@ public class ActionComposeeTest {
   }
   @Test
   public void ActionComposeeSommeShouldNotPass() {
-    ActionComposee aC1 = new ActionComposee("GAFAM");
+    ActionComposee aC1 = new ActionComposee("GAFAM", ENTREPRISE);
 
-    ActionSimple a1 = new ActionSimple("Google");
-    ActionSimple a2 = new ActionSimple("Facebook");
-    ActionSimple a3 = new ActionSimple("Amazon");
+    ActionSimple a1 = new ActionSimple("Google", ENTREPRISE);
+    ActionSimple a2 = new ActionSimple("Facebook", ENTREPRISE);
+    ActionSimple a3 = new ActionSimple("Amazon", ENTREPRISE);
 
     aC1.enrgComposition(a1, 0.3f);
     aC1.enrgComposition(a2, 0.6f);
@@ -65,10 +66,10 @@ public class ActionComposeeTest {
 
   @Test
   public void ActionComposee100ShouldPass() {
-    ActionComposee aC1 = new ActionComposee("GAFAM");
+    ActionComposee aC1 = new ActionComposee("GAFAM", ENTREPRISE);
 
-    ActionSimple a1 = new ActionSimple("Google");
-    ActionSimple a2 = new ActionSimple("Facebook");
+    ActionSimple a1 = new ActionSimple("Google", ENTREPRISE);
+    ActionSimple a2 = new ActionSimple("Facebook", ENTREPRISE);
 
 
     aC1.enrgComposition(a1, 0.3f);
