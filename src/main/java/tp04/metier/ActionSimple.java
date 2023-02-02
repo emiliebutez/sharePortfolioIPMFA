@@ -51,7 +51,14 @@ public class ActionSimple extends Action {
   public float getCours(Jour j) {
     return this.mapCours.get(j).getValeur();
   }
-
+/**
+ * a partir d'un portefeuille une action un jour et une quantité cette fonction determine si l investisseur peut acheter cette action 
+ * @param p portefeuille
+ * @param a action
+ * @param j jour
+ * @param qte Qte
+ * @return 
+ */
   @Override
   public boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte) {
    if ( p.getSolde() > (a.getCours(j)*qte)){

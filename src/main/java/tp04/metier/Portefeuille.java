@@ -166,8 +166,12 @@ public class Portefeuille {
     }
 <<<<<<< HEAD
     
-    
-    /*** retoune le Montant total des valeur des actions du porte feuille ***/
+   
+    /**
+     * retoune les informations d 'un porte feuille à un jour donné
+     * @param j Jour
+     * @return 
+     */
     public float getMontantPF(Jour j) {
       float valeurTotal = 0;
       float valeur = 0;
@@ -185,9 +189,16 @@ public class Portefeuille {
       }    
     return valeurTotal;
     }
+    /**
+     * getter pour solde
+     */
   public void setSolde() {
             this.solde = solde; 
         }
+  /**
+   * setter pour solde
+   * @return solde
+   */
   public float getSolde() {
             return this.solde;
         }
