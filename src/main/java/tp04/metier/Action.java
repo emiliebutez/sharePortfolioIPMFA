@@ -36,13 +36,15 @@ public abstract class Action {
     hash = 53 * hash + Objects.hashCode(this.libelle);
     return hash;
   }
-
+    public abstract float getCours(Jour j);
+        public abstract boolean verifierPouvoirAchat(Portefeuille p,Action a, Jour j, int qte);
   @Override
   public boolean equals(Object obj) {
     if (obj == null)
     {
       return false;
     }
+       
     if (getClass() != obj.getClass())
     {
       return false;
@@ -58,7 +60,5 @@ public abstract class Action {
   public String toString() {
     return this.getLibelle();
   }
-
-  public abstract float getCours(Jour j);
 
 }

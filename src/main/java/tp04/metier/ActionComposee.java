@@ -66,8 +66,13 @@ public float valeur(Jour j) {
   }
 
   @Override
-public float getCours(Jour j) {
-    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  public float getCours(Jour j) {
+    return this.valeur(j);
   }
 
+  @Override
+  public boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte) {
+return true;  }
+    
+    
 }
