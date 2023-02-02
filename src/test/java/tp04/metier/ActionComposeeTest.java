@@ -62,4 +62,22 @@ public class ActionComposeeTest {
     }
     assertNotEquals(1.2f, sommePourcentage);
   }
+
+  @Test
+  public void ActionComposee100ShouldPass() {
+    ActionComposee aC1 = new ActionComposee("GAFAM");
+
+    ActionSimple a1 = new ActionSimple("Google");
+    ActionSimple a2 = new ActionSimple("Facebook");
+
+
+    aC1.enrgComposition(a1, 0.3f);
+    aC1.enrgComposition(a2, 0.4f);
+
+    float sommePourcentage=0;
+    for( Float p: aC1.mapPanier.values()){
+      sommePourcentage += p;
+    }
+    assertNotEquals(1f, sommePourcentage);
+  }  
 }
