@@ -45,5 +45,21 @@ public class ActionComposeeTest {
     assertEquals(true, aC1.mapPanier.containsKey(a1));
     assertEquals(0.1f, aC1.mapPanier.get(a1));
   }
+  @Test
+  public void ActionComposeeSommeShouldNotPass() {
+    ActionComposee aC1 = new ActionComposee("GAFAM");
 
+    ActionSimple a1 = new ActionSimple("Google");
+    ActionSimple a2 = new ActionSimple("Facebook");
+    ActionSimple a3 = new ActionSimple("Amazon");
+
+    aC1.enrgComposition(a1, 0.3f);
+    aC1.enrgComposition(a2, 0.6f);
+    aC1.enrgComposition(a3, 0.3f);
+    float sommePourcentage=0;
+    for( Float p: aC1.mapPanier.values()){
+      sommePourcentage += p;
+    }
+    assertNotEquals(1.2f, sommePourcentage);
+  }
 }

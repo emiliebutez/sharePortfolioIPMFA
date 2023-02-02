@@ -28,7 +28,7 @@ public class ActionComposee extends Action {
 
   /**
    * Enrregistre les differents % de chaque Action Simple
-   *
+   *La somme de ses action ne peut pas dépasser 100%
    * @param as -> pour action Simple
    * @param pourcentage
    */
