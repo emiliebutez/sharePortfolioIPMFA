@@ -23,6 +23,7 @@ import java.util.Objects;
  * @author Emilie
  */
 public class Investisseur {
+
   /**
    * Code de l'investisseur.
    */
@@ -46,6 +47,7 @@ public class Investisseur {
 
   /**
    * Constructeur de la classe Investisseur.
+   *
    * @param codeI Code de l'investisseur.
    * @param nomI Nom de l'investisseur.
    * @param prenomI Prenom de l'investisseur.
@@ -61,6 +63,7 @@ public class Investisseur {
 
   /**
    * Récupère le code de l'investisseur.
+   *
    * @return Le code de l'investisseur.
    */
   public int getCodeI() {
@@ -69,6 +72,7 @@ public class Investisseur {
 
   /**
    * Définit le code de l'investisseur.
+   *
    * @param codeI Code de l'investisseur.
    */
   public void setCodeI(int codeI) {
@@ -77,6 +81,7 @@ public class Investisseur {
 
   /**
    * Rècupère le nom de l'investisseur.
+   *
    * @return Le nom de l'investisseur.
    */
   public String getNomI() {
@@ -85,6 +90,7 @@ public class Investisseur {
 
   /**
    * Définit le nom de l'investisseur.
+   *
    * @param nomI Le nom de l'investisseur.
    */
   public void setNomI(String nomI) {
@@ -93,6 +99,7 @@ public class Investisseur {
 
   /**
    * Récupère le prenom de l'investisseur.
+   *
    * @return Le nom de l'investisseur.
    */
   public String getPrenomI() {
@@ -101,6 +108,7 @@ public class Investisseur {
 
   /**
    * Définit le prenom de l'investisseur.
+   *
    * @param prenomI Le prenom de l'investisseur.
    */
   public void setPrenomI(String prenomI) {
@@ -109,6 +117,7 @@ public class Investisseur {
 
   /**
    * Récupère l'adresse mail de l'investisseur.
+   *
    * @return L'adresse mail de l'investisseur.
    */
   public String getEmailI() {
@@ -117,6 +126,7 @@ public class Investisseur {
 
   /**
    * Définit l'adresse mail de l'investisseur.
+   *
    * @param emailI L'adresse mail de l'investisseur.
    */
   public void setEmailI(String emailI) {
@@ -125,6 +135,7 @@ public class Investisseur {
 
   /**
    * Récupère le portefeuille de l'investisseur.
+   *
    * @return Le portefeuille de l'investisseur.
    */
   public Portefeuille getPortefeuilleI(int index) {
@@ -133,6 +144,7 @@ public class Investisseur {
 
   /**
    * Définit le portefeuille de l'investisseur.
+   *
    * @param portefeuilleI Le portefeuille de l'investisseur.
    */
   public void setPortefeuilleI(Portefeuille portefeuilleI, int index) {
@@ -145,20 +157,26 @@ public class Investisseur {
   }
 
   @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Investisseur that = (Investisseur) o;
-      return codeI == that.codeI && nomI.equals(that.nomI) && prenomI.equals(that.prenomI) && emailI.equals(that.emailI) && Objects.equals(portefeuilles, that.portefeuilles);
+  public boolean equals(Object o) {
+    if (this == o)
+    {
+      return true;
     }
+    if (o == null || getClass() != o.getClass())
+    {
+      return false;
+    }
+    Investisseur that = (Investisseur) o;
+    return codeI == that.codeI && nomI.equals(that.nomI) && prenomI.equals(that.prenomI) && emailI.equals(that.emailI) && Objects.equals(portefeuilles, that.portefeuilles);
+  }
 
   @Override
-    public String toString() {
-      return "Investisseur{" +
-              "codeI=" + codeI +
-              ", nomI='" + nomI + '\'' +
-              ", prenomI='" + prenomI + '\'' +
-              ", emailI='" + emailI + '\'' +
-              '}';
-    }
+  public String toString() {
+    return "Investisseur{"
+            + "codeI=" + codeI
+            + ", nomI='" + nomI + '\''
+            + ", prenomI='" + prenomI + '\''
+            + ", emailI='" + emailI + '\''
+            + '}';
+  }
 }

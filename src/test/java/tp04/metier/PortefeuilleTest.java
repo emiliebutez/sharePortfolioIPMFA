@@ -26,6 +26,7 @@ public class PortefeuilleTest {
 
   public PortefeuilleTest() {
   }
+
   /**
    * Acheter une quantité
    */

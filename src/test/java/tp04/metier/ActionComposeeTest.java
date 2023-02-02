@@ -24,26 +24,26 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ActionComposeeTest {
 
-  
-  public ActionComposeeTest(){
-}
+  public ActionComposeeTest() {
+  }
+
   /**
    * Instentiation des paramètres
    */
-@Test
-public void ActionComposeeShouldPass() {
-    ActionComposee aC1= new ActionComposee("GAFAM");
-    
+  @Test
+  public void ActionComposeeShouldPass() {
+    ActionComposee aC1 = new ActionComposee("GAFAM");
+
     ActionSimple a1 = new ActionSimple("Google");
-   // ActionSimple a2 = new ActionSimple("Facebook");
+    // ActionSimple a2 = new ActionSimple("Facebook");
     //ActionSimple a3 = new ActionSimple("Amazon");
-    
+
     aC1.enrgComposition(a1, 0.1f);
-   // aC1.enrgComposition(a2, 0.16f);
+    // aC1.enrgComposition(a2, 0.16f);
     //aC1.enrgComposition(a3, 0.2f);
-    
+
     assertEquals(true, aC1.mapPanier.containsKey(a1));
     assertEquals(0.1f, aC1.mapPanier.get(a1));
   }
-  
+
 }

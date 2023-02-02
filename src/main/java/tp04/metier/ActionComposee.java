@@ -32,12 +32,28 @@ public class ActionComposee extends Action {
    * @param as -> pour action Simple
    * @param pourcentage
    */
-  public void enrgComposition(ActionSimple as, float pourcentage) {
-    this.mapPanier.put(as, pourcentage);
+  public void enrgComposition(ActionSimple a, float pourcentage) {
+    float sommePourcentage = 0;
+
+    for (Float p : mapPanier.values())
+    {
+      sommePourcentage += p;
+    }
+    if (sommePourcentage + pourcentage <= 1)
+    {
+      mapPanier.put(a, pourcentage);
+    } 
+    else
+    {
+      System.out.println("Le pourcentage demandé est supérieur à 100%");
+    }
+
   }
 
-  @Override
-  public float valeur(Jour j) {
+
+
+@Override
+public float valeur(Jour j) {
     float valeur;
 
     valeur = 0;
@@ -50,7 +66,7 @@ public class ActionComposee extends Action {
   }
 
   @Override
-  public float getCours(Jour j) {
+public float getCours(Jour j) {
     throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
   }
 
