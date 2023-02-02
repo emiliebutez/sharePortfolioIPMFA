@@ -15,6 +15,7 @@
  */
 package tp04.metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,10 +34,6 @@ public class EntrepriseTest {
    * Libelle de l'entreprise attendue.
    */
   private static final String NO_EXPECTED_LIBELLE = "Samsung";
-  /**
-   * Libelle de l'action attendue.
-   */
-  private static final Action EXPECTED_ACTION = new ActionSimple("action");
   /**
    * Libelle de la quantite attendue.
    */
@@ -87,6 +84,7 @@ public class EntrepriseTest {
   @Test
   public void testAjoutActions() {
     final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
+    final Action EXPECTED_ACTION = new ActionSimple("action",testE);
     testE.ajouterActionsE(EXPECTED_ACTION, EXPECTED_QUANTITE);
     
     Assertions.assertTrue(testE.getActionsE().containsKey(EXPECTED_ACTION));
@@ -102,6 +100,7 @@ public class EntrepriseTest {
   @Test
   public void testAjouterQuantite() {
     final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
+    final Action EXPECTED_ACTION = new ActionSimple("action",testE);
     testE.ajouterActionsE(EXPECTED_ACTION, EXPECTED_QUANTITE);
     
     testE.ajouterQuantite(EXPECTED_ACTION, QUANTITE_AJOUTE);
@@ -111,6 +110,21 @@ public class EntrepriseTest {
             result,
             "La somme de EXPECTED_QUANTITE et QUANTITE_AJOUTE doit "
                     + "etre la meme que result");
+  }
+  
+  public void testGetInvestisseursShouldPass(){
+    final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
+    final Investisseur investI = new Investisseur(9, "toto", "titi", "mail@test.com");
+    final Portefeuille portefeuilleP = new Portefeuille(40000, investI);
+    final Action EXPECTED_ACTION = new ActionSimple("action",testE);
+    portefeuilleP.acheter(EXPECTED_ACTION,1);
+    final ArrayList<Investisseur> result = new ArrayList<>();
+    result.add(investI);
+    
+    Assertions.assertSame(testE.getInvestisseurs(),
+            result,
+            "La liste des investisseurs de l'entreprise doit etre "
+                    + "la meme que celle de result");
   }
 }
 
