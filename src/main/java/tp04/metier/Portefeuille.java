@@ -12,8 +12,9 @@ import java.util.Map;
  *
  * @author perussel
  */
+
 public class Portefeuille {
-    
+     private float solde;
     Map<Action, LignePortefeuille> mapLignes;
     
     private class LignePortefeuille {
@@ -21,6 +22,8 @@ public class Portefeuille {
         private Action action;
         
         private int qte;
+        
+        
         
         public int getQte() {
             return qte;
@@ -30,13 +33,19 @@ public class Portefeuille {
             this.qte = qte;
         }
         
+        
+        
         public Action getAction() {
             return this.action;
         }
         
+        
+        
+        
         public LignePortefeuille(Action action, int qte) {
             this.action = action;
             this.qte = qte;
+            
         }
 
         public String toString() {
@@ -44,8 +53,9 @@ public class Portefeuille {
         }
     }
     
-    public Portefeuille() {
+    public Portefeuille(float solde) {
         this.mapLignes = new HashMap();
+        this.solde = solde;
     }
     
     public void acheter(Action a, int q) {
@@ -79,12 +89,28 @@ public class Portefeuille {
     }
     
     
-    /** retoune le Montant total des valeur des actions du porte feuille */
+    /*** retoune le Montant total des valeur des actions du porte feuille ***/
     public float getMontantPF(Jour j) {
+      float valeurTotal = 0;
       float valeur = 0;
+      float qte =0;
+      float valeurTotalAction = 0;
       for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet()) {
-        System.out.println("Action:"+mapEntry.getKey().getLibelle()+"qte:"+mapEntry.getValue().getQte()+"valeur"+mapEntry.getValue().getAction().getCours(j));
-         valeur = valeur + mapEntry.getValue().getAction().getCours(j);
+        valeur = 0;
+        valeur = mapEntry.getValue().getAction().getCours(j); 
+        qte = +mapEntry.getValue().getQte();
+        valeurTotal = valeurTotal + (valeur*qte );
+        valeurTotalAction =  valeur * qte;
+        System.out.println("Action: "+mapEntry.getKey().getLibelle()+"   qte:"+mapEntry.getValue().getQte()+"   valeur"+mapEntry.getValue().getAction().getCours(j) +"  valeurTotalAction:"+valeurTotalAction);
+
+         
       }    
-    return valeur;
-    }}
+    return valeurTotal;
+    }
+  public void setSolde() {
+            this.solde = solde; 
+        }
+  public float getSolde() {
+            return this.solde;
+        }
+}

@@ -52,6 +52,14 @@ public class ActionSimple extends Action {
     return this.mapCours.get(j).getValeur();
   }
 
+  @Override
+  public boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte) {
+   if ( p.getSolde() > (a.getCours(j)*qte)){
+     return true;
+   }
+   else return false;
+  }
+
  
 
   

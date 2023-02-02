@@ -57,5 +57,8 @@ public abstract class Action {
         return this.getLibelle();
     }
     public abstract float getCours(Jour j);
+    
+    public abstract boolean verifierPouvoirAchat(Portefeuille p,Action a, Jour j, int qte);
+     
        
 }

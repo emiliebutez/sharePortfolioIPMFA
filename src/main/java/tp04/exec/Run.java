@@ -39,7 +39,7 @@ public class Run {
         System.out.println("Action *Banque-Assurance* à j2 : " + bqAss.valeur(j2));
 
         Portefeuille p;
-        p = new Portefeuille();
+        p = new Portefeuille(10000);
         p.acheter(axa, 10);
         System.out.println("Portefeuille : " + p);
         p.acheter(bnp, 20);
@@ -57,8 +57,10 @@ public class Run {
         System.out.println("Portefeuille : " + p);
         p.vendre(bnp, 50);
         System.out.println("Portefeuille : " + p);
-        System.out.println("valeur: " + p.getMontantPF(j1));
- 
+        System.out.println("--------------------------------" );
+        System.out.println("valeur Total: " + p.getMontantPF(j1));
+        System.out.println("Le solde disponible est : " +p.getSolde() );
+        System.out.println(bnp.verifierPouvoirAchat(p, axa, j2, 20));
     }
 
 }
