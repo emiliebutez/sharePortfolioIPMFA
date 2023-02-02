@@ -14,6 +14,7 @@ import java.util.Map;
  */
 
 public class Portefeuille {
+<<<<<<< HEAD
      private float solde;
     Map<Action, LignePortefeuille> mapLignes;
     
@@ -64,29 +65,106 @@ public class Portefeuille {
         } else {
             this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
         }
+=======
+  //Liste des action du portefeuille
+
+  Map<Action, LignePortefeuille> mapLignes;
+
+  private class LignePortefeuille {
+    //Parametres de la classe LignePortefeuille
+
+    private Action action;
+
+    private int qte;
+    // Methodes GET & SET 
+
+    public int getQte() {
+      return qte;
+>>>>>>> 030da7aa560af37eadc94adcb97cd5ba17c257b3
     }
 
-    public void vendre(Action a, int q) {
-        if (this.mapLignes.containsKey(a) == true) {
-            if (this.mapLignes.get(a).getQte() > q) {
-                this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
-            } else if (this.mapLignes.get(a).getQte() == q) {
-                this.mapLignes.remove(a);
-            }
-        }        
+    public void setQte(int qte) {
+      this.qte = qte;
     }
-    
+
+    public Action getAction() {
+      return this.action;
+    }
+    //Constructeur de la classe LignePortefeuille
+
+    public LignePortefeuille(Action action, int qte) {
+      this.action = action;
+      this.qte = qte;
+    }
+    //Methode toString() 
+
     public String toString() {
-        return this.mapLignes.toString();
+      return Integer.toString(qte);
     }
+  }
+  //Methode de la classe Portefeuille
 
-    public float valeur(Jour j) {
-        float total = 0;
-        for (LignePortefeuille lp : this.mapLignes.values()) {
-            total = total + (lp.getQte() * lp.getAction().valeur(j));
-        }
-        return total;
+  public Portefeuille() {
+    this.mapLignes = new HashMap();
+  }
+
+  //Methode d'achat d'une action
+  public void acheter(Action a, int q) {
+    if (q <= 0)
+    {
+      System.out.println("on ne peut pas acheter de quantités négatives");
+    } else if (this.mapLignes.containsKey(a) == false)
+    {
+      this.mapLignes.put(a, new LignePortefeuille(a, q));
+    } else
+    {
+      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
     }
+  }
+
+  // méthode permettant de vendre une action
+  public void vendre(Action a, int q) {
+    if (this.mapLignes.containsKey(a) == true)
+    {
+      if (this.mapLignes.get(a).getQte() > q)
+      {
+        this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
+      } else if (this.mapLignes.get(a).getQte() == q)
+      {
+        this.mapLignes.remove(a);
+      } else
+      {
+        System.out.println("on ne peut pas vendre plus que la quantité achetée");
+      }
+    }
+  }
+  //Methode toString()
+
+  public String toString() {
+    return this.mapLignes.toString();
+  }
+
+  //Methode qui permet d'obtenir la valeur du portefeuille à un jour donnée
+  public float valeur(Jour j) {
+    float total = 0;
+    for (LignePortefeuille lp : this.mapLignes.values())
+    {
+      total = total + (lp.getQte() * lp.getAction().valeur(j));
+    }
+    return total;
+  }
+
+  /**
+   * retoune le Montant total des valeur des actions du porte feuille
+   */
+  public float getMontantPF(Jour j) {
+    float valeur = 0;
+    for (Map.Entry<Action, LignePortefeuille> mapEntry : mapLignes.entrySet())
+    {
+      System.out.println("Action:" + mapEntry.getKey().getLibelle() + "qte:" + mapEntry.getValue().getQte() + "valeur" + mapEntry.getValue().getAction().getCours(j));
+      valeur = valeur + mapEntry.getValue().getAction().getCours(j);
+    }
+<<<<<<< HEAD
     
     
     /*** retoune le Montant total des valeur des actions du porte feuille ***/
@@ -113,4 +191,8 @@ public class Portefeuille {
   public float getSolde() {
             return this.solde;
         }
+=======
+    return valeur;
+  }
+>>>>>>> 030da7aa560af37eadc94adcb97cd5ba17c257b3
 }
