@@ -118,7 +118,12 @@ public class Portefeuille {
       historique(a, j, q);
       this.setSolde(solde - (a.getCours(j) * q));
       a.getEntreprise().ajouterInvestisseur(this.invest);
-      }else{System.out.println("Solde insuffisant");}
+      EnvoiMail mail = new EnvoiMail();
+      mail.envoyerMail(this.invest.getEmailI(), a, q);
+    } else
+    {
+      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+      a.getEntreprise().ajouterInvestisseur(this.invest);
     }
   }
 
