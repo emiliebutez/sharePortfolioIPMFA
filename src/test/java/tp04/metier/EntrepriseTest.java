@@ -113,11 +113,12 @@ public class EntrepriseTest {
   
   public void testGetInvestisseursShouldPass(){
     final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
+    final Jour j1 = new Jour(2023, 20);
     final Investisseur investI = new Investisseur(9, "toto", 
             "titi", "mail@test.com");
     final Portefeuille portefeuilleP = new Portefeuille(40000, investI);
     final Action EXPECTED_ACTION = new ActionSimple("action",testE);
-    portefeuilleP.acheter(EXPECTED_ACTION,1);
+    portefeuilleP.acheter(EXPECTED_ACTION,1, j1);
     final ArrayList<Investisseur> result = new ArrayList<>();
     result.add(investI);
     

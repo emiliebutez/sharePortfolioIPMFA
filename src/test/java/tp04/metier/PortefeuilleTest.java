@@ -15,7 +15,7 @@
  */
 package tp04.metier;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -38,9 +38,9 @@ public class PortefeuilleTest {
     Portefeuille p1 = new Portefeuille();
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1);
+    p1.acheter(a1, 1, j1);
 
-    assertEquals(5, p1.valeur(j1));
+    assertEquals(5, p1.valeurPtf(j1));
   }
 
   /**
@@ -52,8 +52,8 @@ public class PortefeuilleTest {
     Portefeuille p1 = new Portefeuille();
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, -10);
-    assertNotEquals(-50, p1.valeur(j1));
+    p1.acheter(a1, -10, j1);
+    assertNotEquals(-50, p1.valeurPtf(j1));
   }
 
   /**
@@ -65,10 +65,10 @@ public class PortefeuilleTest {
     Portefeuille p1 = new Portefeuille();
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1);
+    p1.acheter(a1, 1, j1);
     p1.vendre(a1, 1);
 
-    assertEquals(0, p1.valeur(j1));
+    assertEquals(0, p1.valeurPtf(j1));
   }
 
   /**
@@ -80,10 +80,10 @@ public class PortefeuilleTest {
     Portefeuille p1 = new Portefeuille();
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1);
+    p1.acheter(a1, 1, j1);
     p1.vendre(a1, 2);
 
-    assertNotEquals(-5, p1.valeur(j1));
+    assertNotEquals(-5, p1.valeurPtf(j1));
   }
 
   /**
@@ -95,9 +95,9 @@ public class PortefeuilleTest {
     Portefeuille p1 = new Portefeuille();
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 2);
+    p1.acheter(a1, 2, j1);
     p1.vendre(a1, 1);
 
-    assertEquals(5, p1.valeur(j1));
+    assertEquals(5, p1.valeurPtf(j1));
   }
 }
