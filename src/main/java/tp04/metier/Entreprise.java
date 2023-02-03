@@ -17,6 +17,8 @@ package tp04.metier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -64,7 +66,7 @@ public class Entreprise {
    * Récupère les actions de l'entreprise.
    * @return Les actions de l'entreprise.
    */
-  public HashMap<Action, Integer> getActionsE() {
+  public Map<Action, Integer> getActionsE() {
     return actionsE;
   }
 
@@ -99,7 +101,7 @@ public class Entreprise {
    * Récupère la liste des investisseur de l'entreprise.
    * @return La liste des investisseur de l'entreprise.
    */
-  public ArrayList<Investisseur> getInvestisseurs() {
+  public List<Investisseur> getInvestisseurs() {
     return investisseurs;
   }
 }
