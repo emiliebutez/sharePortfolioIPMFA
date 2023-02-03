@@ -55,7 +55,23 @@ public class PortefeuilleTest {
     p1.acheter(a1, -10, j1);
     assertNotEquals(-50, p1.valeurPtf(j1));
   }
-
+  /**
+   * Si les quantité et le pouvoir d'achat est OK
+   * Alors je peux acheter
+   */
+  @Test
+  final void acheterInvestShouldPass(){
+    Jour j1 = new Jour(2023, 20);
+    ActionSimple a1 = new ActionSimple("Apple", testE);
+    Portefeuille p1 = new Portefeuille();
+    a1.enrgCours(j1, 5f);
+    a1.verifierPouvoirAchat(p1, a1, j1, 1);
+    assertEquals(false,  a1.verifierPouvoirAchat(p1, a1, j1, 1));
+  
+    
+  }
+  
+  
   /**
    * Vendre une quantité égale à celle qui est possédée.
    */
@@ -94,6 +110,7 @@ public class PortefeuilleTest {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
     ActionSimple a1 = new ActionSimple("Apple", testE);
+    //Investisseur i1= new Investisseur (1,"Nom","Prenom","Prenom@gmail.com");
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 2, j1);
     p1.vendre(a1, 1);

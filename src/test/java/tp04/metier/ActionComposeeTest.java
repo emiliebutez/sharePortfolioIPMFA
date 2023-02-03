@@ -92,10 +92,13 @@ public class ActionComposeeTest {
    */
   @Test
   public void GetCoursACShouldPass() {
-    ActionComposee aC1 = new ActionComposee("GAFAM");
+    Entreprise e1 = new Entreprise("Apple");
+    Entreprise e2 = new Entreprise("Amazon");
+    
+    ActionComposee aC1 = new ActionComposee("GAFAM",e1);
 
-    ActionSimple a1 = new ActionSimple("Google");
-    ActionSimple a2 = new ActionSimple("Facebook");
+    ActionSimple a1 = new ActionSimple("Google", e1);
+    ActionSimple a2 = new ActionSimple("Facebook",e1);
 
     Jour j1 = new Jour(2023, 20);
     a1.enrgCours(j1, 5f);
@@ -115,10 +118,13 @@ public class ActionComposeeTest {
   @Test //@auteur test valeur
   
   public void ValueACShouldPass() {
-    ActionComposee aC1 = new ActionComposee("GAFAM");
+    Entreprise e1 = new Entreprise("Apple");
+    Entreprise e2 = new Entreprise("Amazon");
+    
+    ActionComposee aC1 = new ActionComposee("GAFAM",e1);
 
-    ActionSimple a1 = new ActionSimple("Google");
-    ActionSimple a2 = new ActionSimple("Facebook");
+    ActionSimple a1 = new ActionSimple("Google", e1);
+    ActionSimple a2 = new ActionSimple("Facebook",e1);
 
     Jour j1 = new Jour(ANNEE, noJour);
 
