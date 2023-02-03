@@ -14,6 +14,12 @@ import java.util.Map;
  */
 public class ActionComposee extends Action {
   // attribut lien
+  
+  /**
+   * paramètres
+   * @param mapPanier couple ActionSimple/pourcentage
+   */
+
   Map<ActionSimple, Float> mapPanier;
 
   public ActionComposee(String libelle, Entreprise entreprise) {
@@ -21,6 +27,10 @@ public class ActionComposee extends Action {
     this.mapPanier = new HashMap();
   }
 
+  /**
+   * récupérer la valeur des couples ActionSimple/pourcentage
+   * @return mapPanier
+   */
   public Map<ActionSimple, Float> getMapPanier() {
     return mapPanier;
   }
@@ -50,7 +60,11 @@ public class ActionComposee extends Action {
   }
 
 
-
+/**
+ * méthode permettant de récupérer la valeur pour un jour donné
+ * @param j jour
+ * @return valeur
+ */
 @Override
 public float valeur(Jour j) {
     float valeur;
@@ -64,11 +78,24 @@ public float valeur(Jour j) {
     return valeur;
   }
 
+/**
+ * méthode permettant d'obtenir le cours pour un jour donné
+ * @param j jour
+ * @return valeur
+ */
   @Override
   public float getCours(Jour j) {
     return this.valeur(j);
   }
 
+  /**
+   * Méthode boolean permettant de vérifier le pouvoir d'achat
+   * @param p
+   * @param a
+   * @param j
+   * @param qte
+   * @return boolean
+   */
   @Override
   public boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte) {
 return true;  }

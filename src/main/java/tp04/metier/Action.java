@@ -12,53 +12,81 @@ import java.util.Objects;
  * @author perussel
  */
 public abstract class Action {
+
   /**
-    * Libelle de l'action.
-    */
+   *
+   * @param libelle libelle de l'action
+   */
   private String libelle;
   /**
-    * Entreprise proposant cette action.
-    */
+   * Entreprise proposant cette action.
+   */
   private Entreprise entreprise;
 
   /**
-    * Get the value of libelle.
-    *
-    * @return the value of libelle.
-    */
+   * connaitre la valeur du libelle
+   *
+   * @return la valeur du libelle
+   */
   public String getLibelle() {
-      return libelle;
-  }
-  
-  /**
-    * Constructeur de l'action.
-    * @param libelle libelle de l'action.
-    * @param entreprise 
-    */
-  public Action(String libelle, Entreprise entreprise) {
-      this.libelle = libelle;
-      this.entreprise = entreprise;
+    return libelle;
   }
 
+  /**
+   * Constructeur de l'action.
+   *
+   * @param libelle libelle de l'action.
+   * @param entreprise
+   */
+  public Action(String libelle, Entreprise entreprise) {
+    this.libelle = libelle;
+    this.entreprise = entreprise;
+  }
+
+  /**
+   * méthode abstraite permettant d'obtenir la valeur d'une action à un jour
+   * donné
+   *
+   * @param j jour de la valeur
+   */
   public abstract float valeur(Jour j);
 
+  /**
+   * méthode hashcode
+   *
+   * @return hash
+   */
   @Override
   public int hashCode() {
     int hash = 3;
     hash = 53 * hash + Objects.hashCode(this.libelle);
     return hash;
   }
-    public abstract float getCours(Jour j);
 
-    /**
-     * Récupère l'entreprise qui fait référence à l'action.
-     * @return L'entreprise qui fait référence à l'action.
-     */
+  /**
+   * méthode abstraite permettant de récupérer le cours pour un jour donné
+   *
+   * @param j
+   * @return boolean
+   */
+  public abstract float getCours(Jour j);
+
+  public abstract boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte);
+
+  /**
+   * methode equals
+   *
+   * @param obj
+   * @return boolean
+   */
+  /**
+   * Récupère l'entreprise qui fait référence à l'action.
+   *
+   * @return L'entreprise qui fait référence à l'action.
+   */
   public Entreprise getEntreprise() {
     return entreprise;
   }
-    
-  public abstract boolean verifierPouvoirAchat(Portefeuille p,Action a, Jour j, int qte);
 
   @Override
   public boolean equals(Object obj) {
@@ -66,7 +94,7 @@ public abstract class Action {
     {
       return false;
     }
-       
+
     if (getClass() != obj.getClass())
     {
       return false;
