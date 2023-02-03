@@ -44,6 +44,8 @@ public class PortefeuilleTest {
   private static final Entreprise testE = new Entreprise("Apple");
   private static final Investisseur INVESTISSEUR = new Investisseur(1, "Butez", "Emilie", "emiliebutez.eb@gmail.com");
   private static final int QTE = 3000;
+    private static final Investisseur INVESTISSEUR2 = new Investisseur(1, "Butez", "Emilie", "emiliebutez.eb@gmail.com");
+  private static final int QTE2 = 3000;
 
   public PortefeuilleTest() {
   }
@@ -139,7 +141,10 @@ public class PortefeuilleTest {
 
     assertEquals(15, p1.valeurPtf(j1));
   }
-  
+
+/**
+ * Obtenir le montant du portefeuille
+ */  
   final void getMontantPFShouldPass(){
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
@@ -164,4 +169,21 @@ public class PortefeuilleTest {
             "INVESTISSEUR doit etre le meme que result"
     );
   }
+  
+    /**
+   * Test de la méthode equals.
+   */
+  @Test
+  final void testEquals() {
+    final Portefeuille portefeuillePremierResult = new Portefeuille(QTE, INVESTISSEUR);
+    final Portefeuille PortefeuilleSecondResult = new Portefeuille(QTE2, INVESTISSEUR2);
+    
+    boolean equal = portefeuillePremierResult.equals(PortefeuilleSecondResult);
+    Assertions.assertTrue(equal);
+    Assertions.assertEquals(portefeuillePremierResult.hashCode(),
+            PortefeuilleSecondResult.hashCode(),
+            "Le hash code de jourPremierResult doit être le même"
+                    + " que le hash code de jourSecondResult");
+  }
+  
 }
