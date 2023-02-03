@@ -28,23 +28,32 @@ import javax.mail.PasswordAuthentication;
  * @author Emilie
  */
 public class EnvoiMail {
-  
-  private String host="smtp-mail.outlook.com";
-  final String user="devAgile@outlook.fr";//change accordingly
-  final String password="A123456789b";//change accordingly
-    
-  //String to="emiliebutez.eb@gmail.com";//change accordingly
-  
+  /**
+   * Host du mail.
+   */
+  private final String host = "smtp-mail.outlook.com";
+  /**
+   * Adresse de la boite mail d'envoi.
+   */
+  private final String user = "devAgile@outlook.fr";
+  /**
+   * Mot de passe de la boite mail d'envoi.
+   */
+  private final String mdp = "A123456789b";
+  /**
+   * Constructeur de la classe EnvoiMAil.
+   * @param to Adresse de la boite mail de réception.
+   * @param a Action acheté qui correspond à l'envoi.
+   * @param qte Quantité d'action acheter.
+   */
   public void envoyerMail(String to, Action a, int qte) {
-  
-   //Get the session object
    Properties props = new Properties();
    props.put("mail.smtp.host", this.host);
    props.put("mail.smtp.auth", "true");
    props.put("mail.smtp.starttls.enable", "true");
    Authenticator auth = new Authenticator() {
       protected PasswordAuthentication getPasswordAuthentication() {
-              return new PasswordAuthentication(user, password);
+              return new PasswordAuthentication(user, mdp);
       }
     };
     Session session = Session.getInstance(props, auth);
