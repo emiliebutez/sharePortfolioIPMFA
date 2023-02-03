@@ -32,15 +32,18 @@ public class PortefeuilleTest {
   /**
    * Acheter une quantité.
    */
+  
+  private static final String NOM_LIBELLE = "Apple";
+  private static final float COURS_TEST = 5f;
+  private static final Jour JOUR1 = new Jour(2023,20);
+  private static final Portefeuille PORTEFEUILLE = new Portefeuille();
+  private static final ActionSimple ACTION_TEST = new ActionSimple(NOM_LIBELLE, testE);
   @Test
   final void acheterShouldPass() {
-    Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple", testE);
-    a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1, j1);
+    ACTION_TEST.enrgCours(JOUR1, COURS_TEST);
+    PORTEFEUILLE.acheter(ACTION_TEST, 1, JOUR1);
 
-    assertEquals(5, p1.valeurPtf(j1));
+    assertEquals(COURS_TEST, PORTEFEUILLE.valeurPtf(JOUR1));
   }
 
   /**
@@ -48,12 +51,9 @@ public class PortefeuilleTest {
    */
   @Test
   final void acheterShouldNotPass() {
-    Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple", testE);
-    a1.enrgCours(j1, 5f);
-    p1.acheter(a1, -10, j1);
-    assertNotEquals(-50, p1.valeurPtf(j1));
+    ACTION_TEST.enrgCours(JOUR1, COURS_TEST);
+    PORTEFEUILLE.acheter(ACTION_TEST, -10, JOUR1);
+    assertNotEquals(-50, PORTEFEUILLE.valeurPtf(JOUR1));
   }
   /**
    * Si les quantité et le pouvoir d'achat est OK
@@ -61,12 +61,9 @@ public class PortefeuilleTest {
    */
   @Test
   final void acheterInvestShouldPass(){
-    Jour j1 = new Jour(2023, 20);
-    ActionSimple a1 = new ActionSimple("Apple", testE);
-    Portefeuille p1 = new Portefeuille();
-    a1.enrgCours(j1, 5f);
-    a1.verifierPouvoirAchat(p1, a1, j1, 1);
-    assertEquals(false,  a1.verifierPouvoirAchat(p1, a1, j1, 1));
+    ACTION_TEST.enrgCours(JOUR1, COURS_TEST);
+    ACTION_TEST.verifierPouvoirAchat(PORTEFEUILLE, ACTION_TEST, JOUR1, 1);
+    assertEquals(false,  ACTION_TEST.verifierPouvoirAchat(PORTEFEUILLE, ACTION_TEST, JOUR1, 1));
   
     
   }
@@ -77,14 +74,11 @@ public class PortefeuilleTest {
    */
   @Test
   final void vendreEqualsShouldPass() {
-    Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple", testE);
-    a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1, j1);
-    p1.vendre(a1, 1);
+    ACTION_TEST.enrgCours(JOUR1, COURS_TEST);
+    PORTEFEUILLE.acheter(ACTION_TEST, 1, JOUR1);
+    PORTEFEUILLE.vendre(ACTION_TEST, 1);
 
-    assertEquals(0, p1.valeurPtf(j1));
+    assertEquals(0, PORTEFEUILLE.valeurPtf(JOUR1));
   }
 
   /**
@@ -92,14 +86,11 @@ public class PortefeuilleTest {
    */
   @Test
   final void vendreShouldNotPass() {
-    Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple", testE);
-    a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1, j1);
-    p1.vendre(a1, 2);
+    ACTION_TEST.enrgCours(JOUR1, COURS_TEST);
+    PORTEFEUILLE.acheter(ACTION_TEST, 1, JOUR1);
+    PORTEFEUILLE.vendre(ACTION_TEST, 2);
 
-    assertNotEquals(-5, p1.valeurPtf(j1));
+    assertNotEquals(-5, PORTEFEUILLE.valeurPtf(JOUR1));
   }
 
   /**
@@ -110,7 +101,7 @@ public class PortefeuilleTest {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
     ActionSimple a1 = new ActionSimple("Apple", testE);
-    //Investisseur i1= new Investisseur (1,"Nom","Prenom","Prenom@gmail.com");
+    Investisseur i1= new Investisseur (1,"Nom","Prenom","Prenom@gmail.com");
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 2, j1);
     p1.vendre(a1, 1);
