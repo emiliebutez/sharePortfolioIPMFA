@@ -188,7 +188,7 @@ class InvestisseurTest {
     
     boolean equal = testI1.equals(testI2);
     Assertions.assertTrue(equal);
-    Assertions.assertSame(testI1.hashCode(), testI2.hashCode(),
+    Assertions.assertEquals(testI1.hashCode(), testI2.hashCode(),
             "Le hash code de testI1 doit être le même"
                     + " que le hash code de testI2");
   }
