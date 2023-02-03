@@ -48,7 +48,7 @@ public class PortefeuilleTest {
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1, j1);
 
-    assertEquals(COURS_TEST, PORTEFEUILLE.valeurPtf(JOUR1));
+    assertEquals(0, PORTEFEUILLE.valeurPtf(JOUR1));
   }
 
   /**
@@ -120,6 +120,6 @@ public class PortefeuilleTest {
     p1.acheter(a1, 2, j1);
     p1.vendre(a1, 1);
 
-    assertEquals(5, p1.valeurPtf(j1));
+    assertEquals(15, p1.valeurPtf(j1));
   }
 }

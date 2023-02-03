@@ -127,6 +127,7 @@ public class Portefeuille {
     }
   }
   }
+
 // méthode permettant de vendre une action
   public void vendre(Action a, int q) {
     if (this.mapLignes.containsKey(a) == true)
@@ -143,6 +144,7 @@ public class Portefeuille {
       }
     }
   }
+  
 
 //Methode toString()
   public String toString() {
