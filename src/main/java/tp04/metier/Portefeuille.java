@@ -5,6 +5,7 @@
  */
 package tp04.metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,12 +17,15 @@ import java.util.Map;
 public class Portefeuille {
      private float solde;
     Map<Action, LignePortefeuille> mapLignes;
+
+    ArrayList<ArrayList<String>> histotab = new ArrayList<ArrayList<String>>();
+      public Portefeuille(float solde) {
+
     /**
      * Investisseur a qui appartient l'entreprise.
      */
-    private Investisseur invest;
-    
-    public Portefeuille(float solde, Investisseur invest) {
+    private Investisseur invest
+          public Portefeuille(float solde, Investisseur invest) {
         this.mapLignes = new HashMap();
         this.solde = solde;
         this.invest = invest;
@@ -66,13 +70,21 @@ public class Portefeuille {
   }
 
   //Methode d'achat d'une action
-  public void acheter(Action a, int q) {
+  public void acheter(Action a, int q ,Jour j) {
     if (q <= 0)
     {
       System.out.println("on ne peut pas acheter de quantités négatives");
     } else if (this.mapLignes.containsKey(a) == false)
-    {
+    {if (a.verifierPouvoirAchat(this, a, j, q)){
       this.mapLignes.put(a, new LignePortefeuille(a, q));
+
+    } }else
+    {if (a.verifierPouvoirAchat(this, a, j, q)){
+      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+    }}
+  
+    this.historique(a, j, q);
+    this.setSolde(solde-(a.getCours(j)*q));
       a.getEntreprise().ajouterInvestisseur(this.invest);
     } else
     {
@@ -103,8 +115,24 @@ public class Portefeuille {
     return this.mapLignes.toString();
   }
 
+  public Map<Action, LignePortefeuille> getMapLignes() {
+    return mapLignes;
+  }
+
+  public void setMapLignes(Map<Action, LignePortefeuille> mapLignes) {
+    this.mapLignes = mapLignes;
+  }
+
+  public ArrayList<ArrayList<String>> getHistotab() {
+    return histotab;
+  }
+
+  public void setHistotab(ArrayList<ArrayList<String>> histotab) {
+    this.histotab = histotab;
+  }
+
   //Methode qui permet d'obtenir la valeur du portefeuille à un jour donnée
-  public float valeur(Jour j) {
+  public float valeurPtf(Jour j) {
     float total = 0;
     for (LignePortefeuille lp : this.mapLignes.values())
     {
@@ -112,7 +140,18 @@ public class Portefeuille {
     }
     return total;
   }
-
+  public ArrayList<ArrayList<String>> historique(Action a ,Jour j,float qte ){
+  
+ArrayList <String> tmp = new ArrayList<String>();
+// Ajouter des éléments aux sous-listes
+  tmp.add(a.getLibelle());
+     tmp.add(Float.toString(a.getCours(j)));
+     tmp.add(Float.toString(this.solde));
+     tmp.add(Float.toString(qte));
+     histotab.add(tmp);
+     
+    return histotab;
+}
     /**
      * retoune les informations d 'un porte feuille à un jour donné
      * @param j Jour
@@ -142,7 +181,7 @@ public class Portefeuille {
       this.solde = s;
   }
   /**
-   * setter pour solde
+   * getter pour solde
    * @return solde
    */
   public float getSolde() {
