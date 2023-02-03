@@ -15,7 +15,10 @@
  */
 package tp04.metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -30,6 +33,10 @@ public class Entreprise {
    * Liste des actions avec leurs quantités de l'entreprise.
    */
   private HashMap<Action,Integer> actionsE = new HashMap<>();
+  /**
+   * Liste des investisseurs.
+   */
+  private ArrayList<Investisseur> investisseurs = new ArrayList<>();
 
   /**
    * Constructeur de la classe entreprise.
@@ -59,7 +66,7 @@ public class Entreprise {
    * Récupère les actions de l'entreprise.
    * @return Les actions de l'entreprise.
    */
-  public HashMap<Action, Integer> getActionsE() {
+  public Map<Action, Integer> getActionsE() {
     return actionsE;
   }
 
@@ -80,5 +87,21 @@ public class Entreprise {
   public void ajouterQuantite(Action a, Integer qte) {
     Integer qteExistante = this.actionsE.get(a);
     this.actionsE.replace(a, qte + qteExistante);
+  }
+  
+  /**
+   * Ajout d'un investisseur.
+   * @param i Investisseur à ajouter.
+   */
+  public void ajouterInvestisseur(Investisseur i) {
+    this.investisseurs.add(i);
+  }
+
+  /**
+   * Récupère la liste des investisseur de l'entreprise.
+   * @return La liste des investisseur de l'entreprise.
+   */
+  public List<Investisseur> getInvestisseurs() {
+    return investisseurs;
   }
 }

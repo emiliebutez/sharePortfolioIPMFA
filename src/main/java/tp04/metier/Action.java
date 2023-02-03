@@ -16,15 +16,21 @@ public abstract class Action {
  *
  * @param libelle libelle de l'action
  */
+
   private String libelle;
+  /**
+    * Entreprise proposant cette action.
+    */
+  private Entreprise entreprise;
 
   /**
    * connaitre la valeur du libelle
    *
    * @return la valeur du libelle
    */
+
   public String getLibelle() {
-    return libelle;
+      return libelle;
   }
 /**
  * constructeur de l'action
@@ -32,6 +38,15 @@ public abstract class Action {
  */
   public Action(String libelle) {
     this.libelle = libelle;
+  
+  /**
+    * Constructeur de l'action.
+    * @param libelle libelle de l'action.
+    * @param entreprise 
+    */
+  public Action(String libelle, Entreprise entreprise) {
+      this.libelle = libelle;
+      this.entreprise = entreprise;
   }
 
   /**
@@ -65,6 +80,17 @@ public abstract class Action {
    * @param obj
    * @return boolean
    */
+
+    /**
+     * Récupère l'entreprise qui fait référence à l'action.
+     * @return L'entreprise qui fait référence à l'action.
+     */
+  public Entreprise getEntreprise() {
+    return entreprise;
+  }
+    
+  public abstract boolean verifierPouvoirAchat(Portefeuille p,Action a, Jour j, int qte);
+
   @Override
   public boolean equals(Object obj) {
     if (obj == null)
@@ -87,5 +113,4 @@ public abstract class Action {
   public String toString() {
     return this.getLibelle();
   }
-
 }

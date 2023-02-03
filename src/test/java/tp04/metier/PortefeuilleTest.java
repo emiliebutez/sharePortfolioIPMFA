@@ -15,7 +15,7 @@
  */
 package tp04.metier;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -23,79 +23,81 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author louis
  */
 public class PortefeuilleTest {
+  
+  private static final Entreprise testE = new Entreprise("Apple");
 
   public PortefeuilleTest() {
   }
 
   /**
-   * Acheter une quantité
+   * Acheter une quantité.
    */
   @Test
-  public void AcheterShouldPass() {
+  final void acheterShouldPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1);
+    p1.acheter(a1, 1, j1);
 
-    assertEquals(5, p1.valeur(j1));
+    assertEquals(5, p1.valeurPtf(j1));
   }
 
   /**
-   * Acheter une quantité négative
+   * Acheter une quantité négative.
    */
   @Test
-  public void AcheterShouldNotPass() {
+  final void acheterShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, -10);
-    assertNotEquals(-50, p1.valeur(j1));
+    p1.acheter(a1, -10, j1);
+    assertNotEquals(-50, p1.valeurPtf(j1));
   }
 
   /**
-   * Vendre une quantité égale à celle qui est possédée
+   * Vendre une quantité égale à celle qui est possédée.
    */
   @Test
-  public void VendreEqualsShouldPass() {
+  final void vendreEqualsShouldPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1);
+    p1.acheter(a1, 1, j1);
     p1.vendre(a1, 1);
 
-    assertEquals(0, p1.valeur(j1));
+    assertEquals(0, p1.valeurPtf(j1));
   }
 
   /**
-   * Vendre une quantité supérieure à celle qui est possédée
+   * Vendre une quantité supérieure à celle qui est possédée.
    */
   @Test
-  public void VendreShouldNotPass() {
+  final void vendreShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 1);
+    p1.acheter(a1, 1, j1);
     p1.vendre(a1, 2);
 
-    assertNotEquals(-5, p1.valeur(j1));
+    assertNotEquals(-5, p1.valeurPtf(j1));
   }
 
   /**
-   * Vendre une quantité inférieure à celle qui est possédée
+   * Vendre une quantité inférieure à celle qui est possédée.
    */
   @Test
-  public void VendreShouldPass() {
+  final void vendreShouldPass() {
     Jour j1 = new Jour(2023, 20);
     Portefeuille p1 = new Portefeuille();
-    ActionSimple a1 = new ActionSimple("Apple");
+    ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
-    p1.acheter(a1, 2);
+    p1.acheter(a1, 2, j1);
     p1.vendre(a1, 1);
 
-    assertEquals(5, p1.valeur(j1));
+    assertEquals(5, p1.valeurPtf(j1));
   }
 }
