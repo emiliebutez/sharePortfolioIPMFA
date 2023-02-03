@@ -21,7 +21,7 @@ public class ActionComposee extends Action {
    * @param mapPanier couple ActionSimple/pourcentage
    */
 
-  Map<ActionSimple, Float> mapPanier = new HashMap();;
+  Map<ActionSimple, Float> mapPanier = new HashMap<>();
 
   public ActionComposee(String libelle, Entreprise entreprise) {
     super(libelle, entreprise);

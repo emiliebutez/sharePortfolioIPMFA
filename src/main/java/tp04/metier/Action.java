@@ -5,8 +5,6 @@
  */
 package tp04.metier;
 
-import java.util.Objects;
-
 /**
  *
  * @author perussel
@@ -38,7 +36,7 @@ public abstract class Action {
    * @param libelle libelle de l'action.
    * @param entreprise
    */
-  public Action(String libelle, Entreprise entreprise) {
+  protected Action(String libelle, Entreprise entreprise) {
     this.libelle = libelle;
     this.entreprise = entreprise;
   }

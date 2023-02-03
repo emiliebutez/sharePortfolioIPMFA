@@ -16,7 +16,7 @@ import java.util.Objects;
 public class ActionSimple extends Action {
 
     // attribut lien
-    private Map<Jour, Cours> mapCours = new HashMap();
+    private Map<Jour, Cours> mapCours = new HashMap<>();
     
     // constructeur
     public ActionSimple(String libelle, Entreprise entreprise) {
@@ -26,10 +26,7 @@ public class ActionSimple extends Action {
 
   // enrg possible si pas de cours pour ce jour
   public void enrgCours(Jour j, float v) {
-    if (!this.mapCours.containsKey(j))
-    {
-      this.mapCours.put(j, new Cours(j, v));
-    }
+    this.mapCours.computeIfAbsent(j, k -> new Cours(j, v));
   }
   // Recuperer le cours d'une action en fonction d'une action et un jour
 
@@ -64,6 +61,7 @@ public class ActionSimple extends Action {
   @Override
   public int hashCode() {
     int hash = 7;
+    hash = 67 * hash + Objects.hashCode(this.mapCours);
     return hash;
   }
 
