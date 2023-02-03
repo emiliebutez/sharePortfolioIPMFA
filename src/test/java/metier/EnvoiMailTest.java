@@ -13,8 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package tp04.metier;
+package metier;
 
+import metier.Entreprise;
+import metier.ActionSimple;
+import metier.Action;
+import metier.EnvoiMail;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;

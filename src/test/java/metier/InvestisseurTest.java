@@ -1,10 +1,11 @@
 /*
  * Copyright 2023 Emilie.
  */
-package tp04.metier;
+package metier;
 
+import metier.Investisseur;
 import org.junit.jupiter.api.Assertions;
-import tp04.metier.Portefeuille;
+import metier.Portefeuille;
 
 import org.junit.jupiter.api.Test;
 
