@@ -16,10 +16,8 @@
 package tp04.metier;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -31,15 +29,15 @@ public class EntrepriseTest {
    */
   private static final String EXPECTED_LIBELLE = "Apple";
   /**
-   * Libelle de l'entreprise attendue.
+   * Libelle de l'entreprise non attendu.
    */
   private static final String NO_EXPECTED_LIBELLE = "Samsung";
   /**
-   * Libelle de la quantite attendue.
+   * La quantite attendue.
    */
   private static final Integer EXPECTED_QUANTITE = 4;
   /**
-   * Libelle de la quantite a ajoute.
+   * La quantite a ajoute.
    */
   private static final Integer QUANTITE_AJOUTE = 3;
 
@@ -53,7 +51,7 @@ public class EntrepriseTest {
    * Test de la method getLibelle.
    */
   @Test
-  public void testGetLibelleShouldPass() {
+  final void testGetLibelleShouldPass() {
     final Entreprise testE = new Entreprise(EXPECTED_LIBELLE);
     final String result = testE.getLibelleE();
     
@@ -67,7 +65,7 @@ public class EntrepriseTest {
    * Test de la method setLibelle.
    */
   @Test
-  public void testSetLibelleShouldPass() {
+  final void testSetLibelleShouldPass() {
     final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
     testE.setLibelleE(EXPECTED_LIBELLE);
     final String result = testE.getLibelleE();
@@ -82,9 +80,10 @@ public class EntrepriseTest {
    * Test de la method ajouterActionsE.
    */
   @Test
-  public void testAjoutActions() {
+  final void testAjoutActions() {
     final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
-    final Action EXPECTED_ACTION = new ActionSimple("action",testE);
+    final Action EXPECTED_ACTION = new ActionSimple("action",
+            testE);
     testE.ajouterActionsE(EXPECTED_ACTION, EXPECTED_QUANTITE);
     
     Assertions.assertTrue(testE.getActionsE().containsKey(EXPECTED_ACTION));
@@ -96,9 +95,9 @@ public class EntrepriseTest {
 
   /**
    * Test de la method ajouterQuantite.
-   */  
+   */
   @Test
-  public void testAjouterQuantite() {
+  final void testAjouterQuantite() {
     final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
     final Action EXPECTED_ACTION = new ActionSimple("action",testE);
     testE.ajouterActionsE(EXPECTED_ACTION, EXPECTED_QUANTITE);
@@ -114,7 +113,8 @@ public class EntrepriseTest {
   
   public void testGetInvestisseursShouldPass(){
     final Entreprise testE = new Entreprise(NO_EXPECTED_LIBELLE);
-    final Investisseur investI = new Investisseur(9, "toto", "titi", "mail@test.com");
+    final Investisseur investI = new Investisseur(9, "toto", 
+            "titi", "mail@test.com");
     final Portefeuille portefeuilleP = new Portefeuille(40000, investI);
     final Action EXPECTED_ACTION = new ActionSimple("action",testE);
     portefeuilleP.acheter(EXPECTED_ACTION,1);
