@@ -207,7 +207,6 @@ public class Portefeuille {
     m.clear();
     for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet())
    {
-         valeur = 0;
          valeur = mapEntry.getValue().getAction().getCours(j); 
          qte = +mapEntry.getValue().getQte();
          valeurTotal = valeurTotal + (valeur*qte );

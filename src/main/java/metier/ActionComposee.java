@@ -7,6 +7,7 @@ package metier;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 
 /**
@@ -65,9 +66,8 @@ public float valeur(Jour j) {
     float valeur;
 
     valeur = 0;
-    for (ActionSimple as : this.mapPanier.keySet())
-    {
-      valeur = valeur + (as.valeur(j) * this.mapPanier.get(as));
+    for (Map.Entry<ActionSimple, Float> entry : this.mapPanier.entrySet()) {
+      valeur = valeur + (entry.getKey().valeur(j) * entry.getValue());
     }
 
     return valeur;
