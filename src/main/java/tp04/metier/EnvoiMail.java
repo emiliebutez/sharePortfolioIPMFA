@@ -31,15 +31,15 @@ public class EnvoiMail {
   /**
    * Host du mail.
    */
-  private final String host = "smtp-mail.outlook.com";
+  private static final String HOST = "smtp-mail.outlook.com";
   /**
    * Adresse de la boite mail d'envoi.
    */
-  private final String user = "devAgile@outlook.fr";
+  private static final String USER = "devAgile@outlook.fr";
   /**
    * Mot de passe de la boite mail d'envoi.
    */
-  private final String mdp = "A123456789b";
+  private static final String MDP = "A123456789b";
   /**
    * Constructeur de la classe EnvoiMAil.
    * @param to Adresse de la boite mail de réception.
@@ -48,19 +48,19 @@ public class EnvoiMail {
    */
   public void envoyerMail(String to, Action a, int qte) {
    Properties props = new Properties();
-   props.put("mail.smtp.host", this.host);
+   props.put("mail.smtp.host", this.HOST);
    props.put("mail.smtp.auth", "true");
    props.put("mail.smtp.starttls.enable", "true");
    Authenticator auth = new Authenticator() {
       protected PasswordAuthentication getPasswordAuthentication() {
-              return new PasswordAuthentication(user, mdp);
+              return new PasswordAuthentication(USER, MDP);
       }
     };
     Session session = Session.getInstance(props, auth);
     
     try {
      MimeMessage message = new MimeMessage(session);
-     message.setFrom(new InternetAddress(user));
+     message.setFrom(new InternetAddress(USER));
      message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
      message.setSubject("Récapitulatif");
      message.setText("Vous avez acheté "
@@ -72,7 +72,6 @@ public class EnvoiMail {
              + ".");
      
     Transport.send(message);
-    System.out.println("message sent successfully...");
    
      } catch (MessagingException e) {e.printStackTrace();}
  }
