@@ -103,27 +103,22 @@ public class Portefeuille {
     if (q <= 0)
     {
       System.out.println("on ne peut pas acheter de quantités négatives");
-    } else if (this.mapLignes.containsKey(a) == false)
-    {
-
-      if (a.verifierPouvoirAchat(this, a, j, q))
-      {
+    } else if (this.mapLignes.containsKey(a) == false){
+      if (a.verifierPouvoirAchat(this, a, j, q)){
         this.mapLignes.put(a, new LignePortefeuille(a, q));
-      } else
-      {
-        if (a.verifierPouvoirAchat(this, a, j, q))
-        {
-          this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
-        }
-      }
-
+        this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+        historique(a, j, q);
+        this.setSolde(solde - (a.getCours(j) * q));
+        a.getEntreprise().ajouterInvestisseur(this.invest);
+      }else{System.out.println("Solde insuffisant");}
+    }else {
+      if (a.verifierPouvoirAchat(this, a, j, q)){
+      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+      a.getEntreprise().ajouterInvestisseur(this.invest);
       historique(a, j, q);
       this.setSolde(solde - (a.getCours(j) * q));
       a.getEntreprise().ajouterInvestisseur(this.invest);
-    } else
-    {
-      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
-      a.getEntreprise().ajouterInvestisseur(this.invest);
+      }else{System.out.println("Solde insuffisant");}
     }
   }
 
