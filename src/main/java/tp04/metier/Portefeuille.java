@@ -14,17 +14,34 @@ import java.util.Map;
  */
 
 public class Portefeuille {
+  
+  /**
+   * constructeur
+   * @param solde solde du portefeuille
+   * @param mapLignes couple d'Action/LignePortefeuille
+   */
      private float solde;
     Map<Action, LignePortefeuille> mapLignes;
+    
+  /**
+   * constructeur
+   * @param solde 
+   */
     
     public Portefeuille(float solde) {
         this.mapLignes = new HashMap();
         this.solde = solde;
     }
-  //Liste des action du portefeuille
 
+    /**
+     * Liste des actions d'un portefeuille
+     */
   private class LignePortefeuille {
     //Parametres de la classe LignePortefeuille
+    
+    /**
+     * 
+     */
 
     private Action action;
 

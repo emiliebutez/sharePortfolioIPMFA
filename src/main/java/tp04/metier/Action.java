@@ -12,32 +12,59 @@ import java.util.Objects;
  * @author perussel
  */
 public abstract class Action {
-
+/**
+ *
+ * @param libelle libelle de l'action
+ */
   private String libelle;
 
   /**
-   * Get the value of libelle
+   * connaitre la valeur du libelle
    *
-   * @return the value of libelle
+   * @return la valeur du libelle
    */
   public String getLibelle() {
     return libelle;
   }
-
+/**
+ * constructeur de l'action
+ * @param libelle le libelle de l'action
+ */
   public Action(String libelle) {
     this.libelle = libelle;
   }
 
+  /**
+ * méthode abstraite permettant d'obtenir la valeur d'une action à un jour donné
+ * @param j jour de la valeur
+ */
+  
   public abstract float valeur(Jour j);
 
+  /**
+   * méthode hashcode
+   * @return hash
+   */
   @Override
   public int hashCode() {
     int hash = 3;
     hash = 53 * hash + Objects.hashCode(this.libelle);
     return hash;
   }
+  
+  /**
+   * méthode abstraite permettant de récupérer le cours pour un jour donné
+   * @param j
+   * @return boolean
+   */
     public abstract float getCours(Jour j);
         public abstract boolean verifierPouvoirAchat(Portefeuille p,Action a, Jour j, int qte);
+        
+  /**
+   * methode equals
+   * @param obj
+   * @return boolean
+   */
   @Override
   public boolean equals(Object obj) {
     if (obj == null)
