@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Emilie
  */
-public class EntrepriseTest {
+class EntrepriseTest {
   /**
    * Libelle de l'entreprise attendu.
    */

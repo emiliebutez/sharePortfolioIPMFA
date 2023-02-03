@@ -11,13 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Emilie
  */
-public class ActionSimpleTest {
+class ActionSimpleTest {
 
+  /**
+   * Construteur de la classe ActionSimpleTest.
+   */
   public ActionSimpleTest() {
   }
-
-  @org.junit.jupiter.api.Test
-  public void testSomeMethod() {
-  }
-
 }
