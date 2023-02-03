@@ -25,6 +25,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PortefeuilleTest {
   
   private static final Entreprise testE = new Entreprise("Apple");
+  private static final Investisseur INVESTISSEUR = new Investisseur(1, "Butez", "Emilie", "emiliebutez.eb@gmail.com");
+  private static final int QTE = 3000;
 
   public PortefeuilleTest() {
   }
@@ -35,7 +37,7 @@ public class PortefeuilleTest {
   @Test
   final void acheterShouldPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1, j1);
@@ -49,7 +51,7 @@ public class PortefeuilleTest {
   @Test
   final void acheterShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, -10, j1);
@@ -62,7 +64,7 @@ public class PortefeuilleTest {
   @Test
   final void vendreEqualsShouldPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1, j1);
@@ -77,7 +79,7 @@ public class PortefeuilleTest {
   @Test
   final void vendreShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1, j1);
@@ -92,7 +94,7 @@ public class PortefeuilleTest {
   @Test
   final void vendreShouldPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 2, j1);
