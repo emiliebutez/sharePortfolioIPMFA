@@ -88,26 +88,4 @@ public abstract class Action {
     return entreprise;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null)
-    {
-      return false;
-    }
-
-    if (getClass() != obj.getClass())
-    {
-      return false;
-    }
-    final Action other = (Action) obj;
-    if (!Objects.equals(this.libelle, other.libelle))
-    {
-      return false;
-    }
-    return true;
-  }
-
-  public String toString() {
-    return this.getLibelle();
-  }
 }

@@ -15,9 +15,9 @@ import tp04.metier.Entreprise;
 import tp04.metier.Jour;
 import tp04.metier.Portefeuille;
 
-public class Run {
+//public class Run {
 
-  public static void main(String[] args) {
+  //public static void main(String[] args) {
 //    ActionSimple bnp, axa;
 //    ActionComposee bqAss;
 //    Jour j1, j2;
@@ -95,6 +95,6 @@ public class Run {
 //         
 //         
 //    }
-  }
-}
+//  }
+//}
 

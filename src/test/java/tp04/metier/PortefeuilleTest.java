@@ -122,4 +122,15 @@ public class PortefeuilleTest {
 
     assertEquals(15, p1.valeurPtf(j1));
   }
+  
+  final void getMontantPFShouldPass(){
+    Jour j1 = new Jour(2023, 20);
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
+    ActionSimple a1 = new ActionSimple("Apple", testE);
+    Investisseur i1= new Investisseur (1,"Nom","Prenom","Prenom@gmail.com");
+    a1.enrgCours(j1, 5f);
+    p1.getMontantPF(j1);
+    p1.acheter(a1, 2, j1);
+    assertEquals(10f,p1.valeurPtf(j1));
+  }
 }

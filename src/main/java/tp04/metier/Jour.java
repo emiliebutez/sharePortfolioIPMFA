@@ -45,26 +45,5 @@ public class Jour {
     return hash;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null)
-    {
-      return false;
-    }
-    if (getClass() != obj.getClass())
-    {
-      return false;
-    }
-    final Jour other = (Jour) obj;
-    if (this.annee != other.annee)
-    {
-      return false;
-    }
-    if (this.noJour != other.noJour)
-    {
-      return false;
-    }
-    return true;
-  }
 
 }
