@@ -126,6 +126,7 @@ public class Portefeuille {
       a.getEntreprise().ajouterInvestisseur(this.invest);
     }
   }
+  }
 
 // méthode permettant de vendre une action
   public void vendre(Action a, int q) {
@@ -143,6 +144,7 @@ public class Portefeuille {
       }
     }
   }
+  
 
 //Methode toString()
   public String toString() {
