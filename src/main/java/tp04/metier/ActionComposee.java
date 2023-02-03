@@ -7,6 +7,7 @@ package tp04.metier;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -20,11 +21,10 @@ public class ActionComposee extends Action {
    * @param mapPanier couple ActionSimple/pourcentage
    */
 
-  Map<ActionSimple, Float> mapPanier;
+  Map<ActionSimple, Float> mapPanier = new HashMap();;
 
   public ActionComposee(String libelle, Entreprise entreprise) {
     super(libelle, entreprise);
-    this.mapPanier = new HashMap();
   }
 
   /**
@@ -51,12 +51,7 @@ public class ActionComposee extends Action {
     if (sommePourcentage + pourcentage <= 1)
     {
       mapPanier.put(a, pourcentage);
-    } 
-    else
-    {
-      System.out.println("Le pourcentage demandé est supérieur à 100%");
     }
-
   }
 
 
@@ -98,7 +93,28 @@ public float valeur(Jour j) {
    */
   @Override
   public boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte) {
-return true;  }
-    
-    
+    return true;  
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 53 * hash + Objects.hashCode(this.mapPanier);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final ActionComposee other = (ActionComposee) obj;
+    return Objects.equals(this.mapPanier, other.mapPanier);
+  }
 }
