@@ -133,12 +133,14 @@ public class Portefeuille {
       }    
     return valeurTotal;
     }
-    /**
-     * getter pour solde
-     */
-  public void setSolde() {
-            this.solde = solde; 
-        }
+
+  /**
+   * Définit le solde du portfeuille d'action.
+   * @param s Le solde du portefeuille d'action.
+   */
+  final void setSolde(final float s) {
+      this.solde = s;
+  }
   /**
    * setter pour solde
    * @return solde
