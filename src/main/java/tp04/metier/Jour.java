@@ -60,11 +60,7 @@ public class Jour {
     {
       return false;
     }
-    if (this.noJour != other.noJour)
-    {
-      return false;
-    }
-    return true;
+    return this.noJour != other.noJour;
   }
 
 }
