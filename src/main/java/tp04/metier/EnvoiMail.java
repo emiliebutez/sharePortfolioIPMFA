@@ -15,8 +15,7 @@
  */
 package tp04.metier;
 
-
-import java.util.Properties;  
+import java.util.Properties;
 import javax.mail.*;  
 import javax.mail.internet.*;
 import javax.mail.Session;
@@ -41,12 +40,13 @@ public class EnvoiMail {
    */
   private static final String MDP = "A123456789b";
   /**
-   * Constructeur de la classe EnvoiMAil.
+   * Méthode pour envoyer un mail après l'achat d'une action.
    * @param to Adresse de la boite mail de réception.
    * @param a Action acheté qui correspond à l'envoi.
    * @param qte Quantité d'action acheter.
    */
-  public void envoyerMail(String to, Action a, int qte) {
+  public final void envoyerMail(final String to, final Action a,
+          final int qte) {
    Properties props = new Properties();
    props.put("mail.smtp.host", this.HOST);
    props.put("mail.smtp.auth", "true");
