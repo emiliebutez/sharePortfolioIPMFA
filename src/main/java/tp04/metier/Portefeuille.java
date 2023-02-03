@@ -103,6 +103,8 @@ final void setSolde(final float s) {
       historique(a, j, q);
       this.setSolde(solde-(a.getCours(j)*q));
       a.getEntreprise().ajouterInvestisseur(this.invest);
+      EnvoiMail mail = new EnvoiMail();
+      mail.envoyerMail(this.invest.getEmailI(), a, q);
     } else
     {
       this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
