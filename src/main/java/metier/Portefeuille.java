@@ -289,7 +289,9 @@ public class Portefeuille {
 
   @Override
   public int hashCode() {
-    int hash = 7;
+    int hash = 3;
+    hash = 89 * hash + Float.floatToIntBits(this.solde);
+    hash = 89 * hash + Objects.hashCode(this.mapLignes);
     return hash;
   }
 

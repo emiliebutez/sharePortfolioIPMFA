@@ -48,7 +48,7 @@ public class EnvoiMail {
   public final void envoyerMail(final String to, final Action a,
           final int qte) {
    Properties props = new Properties();
-   props.put("mail.smtp.host", this.HOST);
+   props.put("mail.smtp.host", HOST);
    props.put("mail.smtp.auth", "true");
    props.put("mail.smtp.starttls.enable", "true");
    Authenticator auth = new Authenticator() {
