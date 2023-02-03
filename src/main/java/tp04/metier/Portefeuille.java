@@ -17,10 +17,18 @@ import java.util.Map;
 public class Portefeuille {
      private float solde;
     Map<Action, LignePortefeuille> mapLignes;
+
     ArrayList<ArrayList<String>> histotab = new ArrayList<ArrayList<String>>();
       public Portefeuille(float solde) {
+
+    /**
+     * Investisseur a qui appartient l'entreprise.
+     */
+    private Investisseur invest
+          public Portefeuille(float solde, Investisseur invest) {
         this.mapLignes = new HashMap();
         this.solde = solde;
+        this.invest = invest;
     }
   //Liste des action du portefeuille
 
@@ -69,6 +77,7 @@ public class Portefeuille {
     } else if (this.mapLignes.containsKey(a) == false)
     {if (a.verifierPouvoirAchat(this, a, j, q)){
       this.mapLignes.put(a, new LignePortefeuille(a, q));
+
     } }else
     {if (a.verifierPouvoirAchat(this, a, j, q)){
       this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
@@ -76,6 +85,12 @@ public class Portefeuille {
   
     this.historique(a, j, q);
     this.setSolde(solde-(a.getCours(j)*q));
+      a.getEntreprise().ajouterInvestisseur(this.invest);
+    } else
+    {
+      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+      a.getEntreprise().ajouterInvestisseur(this.invest);
+    }
   }
 
   // méthode permettant de vendre une action
@@ -157,18 +172,27 @@ ArrayList <String> tmp = new ArrayList<String>();
       }    
     return valeurTotal;
     }
-    /**
-     * setter pour solde
-   * @param a
-     */
-  public void setSolde(float a) {
-            this.solde = a; 
-        }
+
+  /**
+   * Définit le solde du portfeuille d'action.
+   * @param s Le solde du portefeuille d'action.
+   */
+  final void setSolde(final float s) {
+      this.solde = s;
+  }
   /**
    * getter pour solde
    * @return solde
    */
   public float getSolde() {
     return this.solde;
+  }
+
+  /**
+   * Récupère l'investisseur à qui appartient le portefeuille.
+   * @return L'investisseur à qui appartient le portefeuille.
+   */
+  public Investisseur getInvest() {
+    return invest;
   }
 }

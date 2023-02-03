@@ -91,6 +91,4 @@ p.getHistotab().add(entete2);
          
          
     }}}
-  
-
 

@@ -14,16 +14,16 @@ import java.util.Map;
  */
 public class ActionSimple extends Action {
 
-  // attribut lien
-  private Map<Jour, Cours> mapCours;
-
-  // constructeur
-  public ActionSimple(String libelle) {
-    // Action simple initialisée comme 1 action
-    super(libelle);
-    // init spécifique
-    this.mapCours = new HashMap();
-  }
+    // attribut lien
+    private Map<Jour, Cours> mapCours;
+    
+    // constructeur
+    public ActionSimple(String libelle, Entreprise entreprise) {
+        // Action simple initialisée comme 1 action
+        super(libelle, entreprise);
+        // init spécifique
+        this.mapCours = new HashMap();
+    }
 
   // enrg possible si pas de cours pour ce jour
   public void enrgCours(Jour j, float v) {

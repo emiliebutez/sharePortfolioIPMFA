@@ -14,11 +14,10 @@ import java.util.Map;
  */
 public class ActionComposee extends Action {
   // attribut lien
-
   Map<ActionSimple, Float> mapPanier;
 
-  public ActionComposee(String libelle) {
-    super(libelle);
+  public ActionComposee(String libelle, Entreprise entreprise) {
+    super(libelle, entreprise);
     this.mapPanier = new HashMap();
   }
 
