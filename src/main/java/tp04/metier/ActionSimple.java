@@ -7,6 +7,7 @@ package tp04.metier;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -15,19 +16,17 @@ import java.util.Map;
 public class ActionSimple extends Action {
 
     // attribut lien
-    private Map<Jour, Cours> mapCours;
+    private Map<Jour, Cours> mapCours = new HashMap();
     
     // constructeur
     public ActionSimple(String libelle, Entreprise entreprise) {
         // Action simple initialisée comme 1 action
         super(libelle, entreprise);
-        // init spécifique
-        this.mapCours = new HashMap();
     }
 
   // enrg possible si pas de cours pour ce jour
   public void enrgCours(Jour j, float v) {
-    if (this.mapCours.containsKey(j) == false)
+    if (!this.mapCours.containsKey(j))
     {
       this.mapCours.put(j, new Cours(j, v));
     }
@@ -36,7 +35,7 @@ public class ActionSimple extends Action {
 
   @Override
   public float valeur(Jour j) {
-    if (this.mapCours.containsKey(j) == true)
+    if (this.mapCours.containsKey(j))
     {
       return this.mapCours.get(j).getValeur();
     } else
@@ -59,10 +58,27 @@ public class ActionSimple extends Action {
  */
   @Override
   public boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte) {
-   if ( p.getSolde() > (a.getCours(j)*qte)){
-     return true;
-   }
-   else return false;
+   return p.getSolde() > (a.getCours(j)*qte);
   }
 
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final ActionSimple other = (ActionSimple) obj;
+    return Objects.equals(this.mapCours, other.mapCours);
+  }
 }

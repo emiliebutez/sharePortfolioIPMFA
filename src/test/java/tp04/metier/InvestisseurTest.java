@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Emilie
  */
-public class InvestisseurTest {
+class InvestisseurTest {
   /**
    * Le code attendu.
    */
@@ -188,7 +188,9 @@ public class InvestisseurTest {
     
     boolean equal = testI1.equals(testI2);
     Assertions.assertTrue(equal);
-    Assertions.assertTrue(testI1.hashCode() == testI2.hashCode());
+    Assertions.assertEquals(testI1.hashCode(), testI2.hashCode(),
+            "Le hash code de testI1 doit être le même"
+                    + " que le hash code de testI2");
   }
 
   /**

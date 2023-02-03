@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author louis
  */
-public class ActionComposeeTest {
+class ActionComposeeTest {
   static final Entreprise ENTREPRISE = new Entreprise("Entreprise1");
 
   public ActionComposeeTest() {
@@ -32,7 +32,7 @@ public class ActionComposeeTest {
    * Instentiation des paramètres
    */
   @Test
-  public void ActionComposeeShouldPass() {
+  final void ActionComposeeShouldPass() {
     ActionComposee aC1 = new ActionComposee("GAFAM", ENTREPRISE);
 
     ActionSimple a1 = new ActionSimple("Google", ENTREPRISE);
@@ -48,7 +48,7 @@ public class ActionComposeeTest {
   }
 
   @Test
-  public void ActionComposeeSommeShouldNotPass() {
+  final void ActionComposeeSommeShouldNotPass() {
     ActionComposee aC1 = new ActionComposee("GAFAM", ENTREPRISE);
 
     ActionSimple a1 = new ActionSimple("Google", ENTREPRISE);
@@ -70,7 +70,7 @@ public class ActionComposeeTest {
    * Test on ne peut pas enregistrerplus que 100% d'action
    */
   @Test
-  public void ActionComposee100ShouldPass() {
+  final void ActionComposee100ShouldPass() {
     ActionComposee aC1 = new ActionComposee("GAFAM", ENTREPRISE);
 
     ActionSimple a1 = new ActionSimple("Google", ENTREPRISE);
@@ -91,7 +91,7 @@ public class ActionComposeeTest {
    * Test connaitre la valeur de l'action compose
    */
   @Test
-  public void GetCoursACShouldPass() {
+  final void GetCoursACShouldPass() {
     Entreprise e1 = new Entreprise("Apple");
     Entreprise e2 = new Entreprise("Amazon");
     
@@ -117,7 +117,7 @@ public class ActionComposeeTest {
 
   @Test //@auteur test valeur
   
-  public void ValueACShouldPass() {
+  final void ValueACShouldPass() {
     Entreprise e1 = new Entreprise("Apple");
     Entreprise e2 = new Entreprise("Amazon");
     
