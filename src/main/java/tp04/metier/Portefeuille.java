@@ -7,6 +7,7 @@ package tp04.metier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,15 +23,14 @@ public class Portefeuille {
    * @param mapLignes couple d'Action/LignePortefeuille
    */
   private float solde;
-  Map<Action, LignePortefeuille> mapLignes;
-  ArrayList<ArrayList<String>> histotab = new ArrayList<ArrayList<String>>();
+  Map<Action, LignePortefeuille> mapLignes = new HashMap<>();;
+  List<ArrayList<String>> histotab = new ArrayList<>();
   /**
    * Investisseur a qui appartient l'entreprise.
    */
   private Investisseur invest;
 
   public Portefeuille(float solde, Investisseur invest) {
-    this.mapLignes = new HashMap();
     this.solde = solde;
     this.invest = invest;
   }
@@ -75,11 +75,10 @@ public class Portefeuille {
   //Methode de la classe Portefeuille
 
   public Portefeuille() {
-    this.mapLignes = new HashMap();
   }
 
-  public ArrayList<ArrayList<String>> historique(Action a, Jour j, float qte) {
-    ArrayList<String> tmp = new ArrayList<String>();
+  public List<ArrayList<String>> historique(Action a, Jour j, float qte) {
+    ArrayList<String> tmp = new ArrayList<>();
     // Ajouter des éléments aux sous-listes
     tmp.add(a.getLibelle());
     tmp.add(Float.toString(a.getCours(j)));
@@ -102,15 +101,15 @@ public class Portefeuille {
   public void acheter(Action a, int q, Jour j) {
     if (q <= 0)
     {
-      System.out.println("on ne peut pas acheter de quantités négatives");
-    } else if (this.mapLignes.containsKey(a) == false){
+      return;
+    } else if (!this.mapLignes.containsKey(a)){
       if (a.verifierPouvoirAchat(this, a, j, q)){
         this.mapLignes.put(a, new LignePortefeuille(a, q));
         this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
         historique(a, j, q);
         this.setSolde(solde - (a.getCours(j) * q));
         a.getEntreprise().ajouterInvestisseur(this.invest);
-      }else{System.out.println("Solde insuffisant");}
+      }else{return;}
     }else {
       if (a.verifierPouvoirAchat(this, a, j, q)){
       this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
@@ -130,7 +129,7 @@ public class Portefeuille {
 
 // méthode permettant de vendre une action
   public void vendre(Action a, int q) {
-    if (this.mapLignes.containsKey(a) == true)
+    if (this.mapLignes.containsKey(a))
     {
       if (this.mapLignes.get(a).getQte() > q)
       {
@@ -140,7 +139,7 @@ public class Portefeuille {
         this.mapLignes.remove(a);
       } else
       {
-        System.out.println("on ne peut pas vendre plus que la quantité achetée");
+        return;
       }
     }
   }
@@ -159,14 +158,13 @@ public class Portefeuille {
     this.mapLignes = mapLignes;
   }
 
-  public ArrayList<ArrayList<String>> getHistotab() {
+  public List<ArrayList<String>> getHistotab() {
     return histotab;
   }
 
-  public void setHistotab(ArrayList<ArrayList<String>> histotab) {
+  public void setHistotab(List<ArrayList<String>> histotab) {
     this.histotab = histotab;
   }
-
 
 /**
  * Methode qui permet d'obtenir la valeur totale du portefeuille à un jour donné
@@ -188,27 +186,27 @@ public class Portefeuille {
    * @param j Jour
    * @return
    */
-  public ArrayList<ArrayList<String>>  getMontantPF(Jour j) {
+  public List<ArrayList<String>>  getMontantPF(Jour j) {
     float valeurTotal = 0;
     float valeur = 0;
     float qte = 0;
     float valeurTotalAction = 0;
 
-    ArrayList<ArrayList<String>> valeurAction = new ArrayList<ArrayList<String>>();
-    ArrayList <String> m = new  ArrayList <String>();
+    List<ArrayList<String>> valeurAction = new ArrayList<>();
+    List<String> m = new ArrayList<>();
     m.add(" ");
     m.add(" ");
     m.add("PorteFeuille");
     m.add(" ");
     m.add(" ");
-    valeurAction.add(m);
+    valeurAction.add((ArrayList<String>) m);
     m.clear();
     m.add("Action");
     m.add(" Quantité");
     m.add("Valeur ");
     m.add(" Valeur totale");
     m.add(" Valeur totale Action");
-    valeurAction.add(m);
+    valeurAction.add((ArrayList<String>) m);
     m.clear();
     for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet())
    {
@@ -223,7 +221,7 @@ public class Portefeuille {
          m.add(Float.toString(mapEntry.getValue().getAction().getCours(j)))  ;
          m.add(Float.toString(valeurTotal));
          m.add(Float.toString(valeurTotalAction));
-         valeurAction.add(m);
+         valeurAction.add((ArrayList<String>) m);
          m.clear();
    }
        
@@ -241,7 +239,7 @@ public class Portefeuille {
    * @param j Jour 
    * @return ret
    */
-  public ArrayList<String> actionMinValeur (Jour j){
+  public List<String> actionMinValeur (Jour j){
   Map.Entry<Action, LignePortefeuille> firstEntry = mapLignes.entrySet().iterator().next();
   float minvaleur = firstEntry.getKey().getCours(j);
   String minlib = firstEntry.getKey().getLibelle();
@@ -252,10 +250,10 @@ public class Portefeuille {
     minlib = mapEntry.getValue().getAction().getLibelle();
   }
   }
-  ArrayList<String> ret = new ArrayList<String>();
+  List<String> ret = new ArrayList<>();
   ret.add(minlib);
   ret.add(Float.toString(minvaleur));
-   return ret;
+  return ret;
  }
   
   /**
@@ -263,7 +261,7 @@ public class Portefeuille {
    * @param j j Jour 
    * @return  ret
    */
-  public ArrayList<String> actionMaxValeur (Jour j){
+  public List<String> actionMaxValeur (Jour j){
   Map.Entry<Action, LignePortefeuille> firstEntry = mapLignes.entrySet().iterator().next();
   float maxvaleur = firstEntry.getKey().getCours(j);
   String maxlib = firstEntry.getKey().getLibelle();
@@ -274,10 +272,10 @@ public class Portefeuille {
     maxlib = mapEntry.getValue().getAction().getLibelle();
   }
   }
-  ArrayList<String> ret = new ArrayList<String>();
+  List<String> ret = new ArrayList<>();
   ret.add(maxlib);
   ret.add(Float.toString(maxvaleur));
-   return ret;
+  return ret;
  }
   
 
