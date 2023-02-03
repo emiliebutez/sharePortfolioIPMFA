@@ -12,15 +12,15 @@ import java.util.Objects;
  * @author perussel
  */
 public abstract class Action {
-/**
- *
- * @param libelle libelle de l'action
- */
 
+  /**
+   *
+   * @param libelle libelle de l'action
+   */
   private String libelle;
   /**
-    * Entreprise proposant cette action.
-    */
+   * Entreprise proposant cette action.
+   */
   private Entreprise entreprise;
 
   /**
@@ -28,36 +28,32 @@ public abstract class Action {
    *
    * @return la valeur du libelle
    */
-
   public String getLibelle() {
-      return libelle;
-  }
-/**
- * constructeur de l'action
- * @param libelle le libelle de l'action
- */
-  public Action(String libelle) {
-    this.libelle = libelle;
-  
-  /**
-    * Constructeur de l'action.
-    * @param libelle libelle de l'action.
-    * @param entreprise 
-    */
-  public Action(String libelle, Entreprise entreprise) {
-      this.libelle = libelle;
-      this.entreprise = entreprise;
+    return libelle;
   }
 
   /**
- * méthode abstraite permettant d'obtenir la valeur d'une action à un jour donné
- * @param j jour de la valeur
- */
-  
+   * Constructeur de l'action.
+   *
+   * @param libelle libelle de l'action.
+   * @param entreprise
+   */
+  public Action(String libelle, Entreprise entreprise) {
+    this.libelle = libelle;
+    this.entreprise = entreprise;
+  }
+
+  /**
+   * méthode abstraite permettant d'obtenir la valeur d'une action à un jour
+   * donné
+   *
+   * @param j jour de la valeur
+   */
   public abstract float valeur(Jour j);
 
   /**
    * méthode hashcode
+   *
    * @return hash
    */
   @Override
@@ -66,30 +62,31 @@ public abstract class Action {
     hash = 53 * hash + Objects.hashCode(this.libelle);
     return hash;
   }
-  
+
   /**
    * méthode abstraite permettant de récupérer le cours pour un jour donné
+   *
    * @param j
    * @return boolean
    */
-    public abstract float getCours(Jour j);
-        public abstract boolean verifierPouvoirAchat(Portefeuille p,Action a, Jour j, int qte);
-        
+  public abstract float getCours(Jour j);
+
+  public abstract boolean verifierPouvoirAchat(Portefeuille p, Action a, Jour j, int qte);
+
   /**
    * methode equals
+   *
    * @param obj
    * @return boolean
    */
-
-    /**
-     * Récupère l'entreprise qui fait référence à l'action.
-     * @return L'entreprise qui fait référence à l'action.
-     */
+  /**
+   * Récupère l'entreprise qui fait référence à l'action.
+   *
+   * @return L'entreprise qui fait référence à l'action.
+   */
   public Entreprise getEntreprise() {
     return entreprise;
   }
-    
-  public abstract boolean verifierPouvoirAchat(Portefeuille p,Action a, Jour j, int qte);
 
   @Override
   public boolean equals(Object obj) {
@@ -97,7 +94,7 @@ public abstract class Action {
     {
       return false;
     }
-       
+
     if (getClass() != obj.getClass())
     {
       return false;
