@@ -4,18 +4,43 @@
  */
 package tp04.metier;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
  * @author Emilie
  */
 class ActionSimpleTest {
-
+  /**
+   * Libelle attendu.
+   */
+  private static final String EXPECTED_LIBELLE = "action";
+  /**
+   * Constante Entreprise.
+   */
+  private static final Entreprise ENTREPRISE = new Entreprise("Apple");
   /**
    * Construteur de la classe ActionSimpleTest.
    */
   public ActionSimpleTest() {
+  }
+
+  /**
+   * Test de la méthode equals.
+   */
+  @Test
+  final void testEquals() {
+    final Action actionPremierResult = new ActionSimple(EXPECTED_LIBELLE,
+            ENTREPRISE);
+    final Action actionSecondResult = new ActionSimple(EXPECTED_LIBELLE,
+            ENTREPRISE);
+    
+    boolean equal = actionPremierResult.equals(actionSecondResult);
+    Assertions.assertTrue(equal);
+    Assertions.assertEquals(actionPremierResult.hashCode(),
+            actionSecondResult.hashCode(),
+            "Le hash code de actionPremierResult doit être le même"
+                    + " que le hash code de actionSecondResult");
   }
 }

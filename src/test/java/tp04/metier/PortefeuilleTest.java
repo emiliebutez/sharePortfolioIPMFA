@@ -15,7 +15,9 @@
  */
 package tp04.metier;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -132,5 +134,19 @@ public class PortefeuilleTest {
     p1.getMontantPF(j1);
     p1.acheter(a1, 2, j1);
     assertEquals(10f,p1.valeurPtf(j1));
+  }
+
+  /**
+   * Test de la method getInvest.
+   */
+  @Test
+  final void getInvestShouldPass() {
+    final Portefeuille portefeuille = new Portefeuille(4500, INVESTISSEUR);
+    final Investisseur result = portefeuille.getInvest();
+
+    Assertions.assertSame(INVESTISSEUR,
+            result,
+            "INVESTISSEUR doit etre le meme que result"
+    );
   }
 }

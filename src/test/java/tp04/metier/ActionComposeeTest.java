@@ -15,6 +15,7 @@
  */
 package tp04.metier;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -135,5 +136,23 @@ class ActionComposeeTest {
     aC1.enrgComposition(a2, SECOND_CODE);
     
     assertEquals(EXPECTED_CODE, aC1.valeur(j1));
+  }
+  
+  /**
+   * Test de la méthode equals.
+   */
+  @Test
+  final void testEquals() {
+    final Action actionPremierResult = new ActionComposee("Google",
+            ENTREPRISE);
+    final Action actionSecondResult = new ActionComposee("Google",
+            ENTREPRISE);
+    
+    boolean equal = actionPremierResult.equals(actionSecondResult);
+    Assertions.assertTrue(equal);
+    Assertions.assertEquals(actionPremierResult.hashCode(),
+            actionSecondResult.hashCode(),
+            "Le hash code de actionPremierResult doit être le même"
+                    + " que le hash code de actionSecondResult");
   }
 }

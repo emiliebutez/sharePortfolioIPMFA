@@ -52,19 +52,7 @@ public abstract class Action {
   public abstract float valeur(Jour j);
 
   /**
-   * méthode hashcode
-   *
-   * @return hash
-   */
-  @Override
-  public int hashCode() {
-    int hash = 3;
-    hash = 53 * hash + Objects.hashCode(this.libelle);
-    return hash;
-  }
-
-  /**
-   * méthode abstraite permettant de récupérer le cours pour un jour donné
+   * méthode abstraite permettant de récupérer le cours pour un jour donné.
    *
    * @param j
    * @return boolean
