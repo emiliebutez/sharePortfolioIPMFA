@@ -7,9 +7,11 @@ package tp04.exec;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import tp04.metier.Investisseur;
 import tp04.metier.Action;
 import tp04.metier.ActionComposee;
 import tp04.metier.ActionSimple;
+import tp04.metier.Entreprise;
 import tp04.metier.Jour;
 import tp04.metier.Portefeuille;
 
@@ -23,11 +25,12 @@ public class Run {
 //    // init des objets metiers Jour
 //    j1 = new Jour(2014, 1);
 //    j2 = new Jour(2014, 2);
-//
+//    Entreprise et1 = new Entreprise("BNP");
+//     Entreprise et2 = new Entreprise("AXA");
 //    // creation d'actions simples et composée
-//    bnp = new ActionSimple("BNP");
-//    axa = new ActionSimple("AXA");
-//    bqAss = new ActionComposee("Banque-Assurance");
+//    bnp = new ActionSimple("BNP",et1);
+//    axa = new ActionSimple("AXA",et2);
+//   bqAss = new ActionComposee("Banque-Assurance", et1);
 //    // enrg de la composition de l'action composée
 //    bqAss.enrgComposition(axa, 0.3f);
 //    bqAss.enrgComposition(bnp, 0.7f);
@@ -36,12 +39,13 @@ public class Run {
 //    axa.enrgCours(j2, 250);
 //    bnp.enrgCours(j1, 100);
 //    bnp.enrgCours(j2, 200);
+//    Investisseur i1 = new Investisseur(1, "nom", "prenom", "prenom@gmail.com");
 //    // affichage des cours - comme 1 action simple et 1 action
 //    System.out.println("Action simple *bnp* à j1 : " + bnp.valeur(j1));
 //    System.out.println("Action *Banque-Assurance* à j2 : " + bqAss.valeur(j2));
-//
+//    
 //        Portefeuille p;
-//        p = new Portefeuille(10000);
+//        p = new Portefeuille(10000, i1);
 //        // init historique 
 //ArrayList <String> entete = new ArrayList<String>();
 //ArrayList <String> entete2 = new ArrayList<String>();

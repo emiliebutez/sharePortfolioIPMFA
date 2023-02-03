@@ -25,6 +25,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PortefeuilleTest {
   
   private static final Entreprise testE = new Entreprise("Apple");
+  private static final Investisseur INVESTISSEUR = new Investisseur(1, "Butez", "Emilie", "emiliebutez.eb@gmail.com");
+  private static final int QTE = 3000;
 
   public PortefeuilleTest() {
   }
@@ -32,15 +34,21 @@ public class PortefeuilleTest {
   /**
    * Acheter une quantité.
    */
+  
+  private static final String NOM_LIBELLE = "Apple";
+  private static final float COURS_TEST = 5f;
+  private static final Jour JOUR1 = new Jour(2023,20);
+  private static final Portefeuille PORTEFEUILLE = new Portefeuille();
+  private static final ActionSimple ACTION_TEST = new ActionSimple(NOM_LIBELLE, testE);
   @Test
   final void acheterShouldPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1, j1);
 
-    assertEquals(5, p1.valeurPtf(j1));
+    assertEquals(COURS_TEST, PORTEFEUILLE.valeurPtf(JOUR1));
   }
 
   /**
@@ -49,26 +57,39 @@ public class PortefeuilleTest {
   @Test
   final void acheterShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, -10, j1);
     assertNotEquals(-50, p1.valeurPtf(j1));
   }
-
+  /**
+   * Si les quantité et le pouvoir d'achat est OK
+   * Alors je peux acheter
+   */
+  @Test
+  final void acheterInvestShouldPass(){
+    ACTION_TEST.enrgCours(JOUR1, COURS_TEST);
+    ACTION_TEST.verifierPouvoirAchat(PORTEFEUILLE, ACTION_TEST, JOUR1, 1);
+    assertEquals(false,  ACTION_TEST.verifierPouvoirAchat(PORTEFEUILLE, ACTION_TEST, JOUR1, 1));
+  
+    
+  }
+  
+  
   /**
    * Vendre une quantité égale à celle qui est possédée.
    */
   @Test
   final void vendreEqualsShouldPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1, j1);
     p1.vendre(a1, 1);
 
-    assertEquals(0, p1.valeurPtf(j1));
+    assertEquals(0, PORTEFEUILLE.valeurPtf(JOUR1));
   }
 
   /**
@@ -77,13 +98,13 @@ public class PortefeuilleTest {
   @Test
   final void vendreShouldNotPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 1, j1);
     p1.vendre(a1, 2);
 
-    assertNotEquals(-5, p1.valeurPtf(j1));
+    assertNotEquals(-5, PORTEFEUILLE.valeurPtf(JOUR1));
   }
 
   /**
@@ -92,8 +113,9 @@ public class PortefeuilleTest {
   @Test
   final void vendreShouldPass() {
     Jour j1 = new Jour(2023, 20);
-    Portefeuille p1 = new Portefeuille();
+    Portefeuille p1 = new Portefeuille(QTE, INVESTISSEUR);
     ActionSimple a1 = new ActionSimple("Apple", testE);
+    Investisseur i1= new Investisseur (1,"Nom","Prenom","Prenom@gmail.com");
     a1.enrgCours(j1, 5f);
     p1.acheter(a1, 2, j1);
     p1.vendre(a1, 1);
