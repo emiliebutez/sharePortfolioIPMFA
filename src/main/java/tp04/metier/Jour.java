@@ -45,5 +45,26 @@ public class Jour {
     return hash;
   }
 
-
+  /**
+   * Détermine s'il est égal à l'objet passé en argument.
+   * @param obj Objet à comparé.
+   * @return True s'il est égal à l'objet passé en argument.
+   */
+  @Override
+  public final boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Jour other = (Jour) obj;
+    if (this.annee != other.annee) {
+      return false;
+    }
+    return this.noJour == other.noJour;
+  }
 }
