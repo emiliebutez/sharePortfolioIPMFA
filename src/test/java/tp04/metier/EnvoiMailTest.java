@@ -20,24 +20,38 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import javax.mail.Transport;
 import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import org.mockito.stubbing.Answer;
 
 /**
  *
  * @author Emilie
  */
-public class EnvoiMailTest {
+  class EnvoiMailTest {
+  /**
+   * Adresse mail de reception.
+   */
   private static String TO = "emiliebutez.eb@gmail.com";
+  /**
+   * Entreprise à qui appartient l'action.
+   */
   private Entreprise entreprise = new Entreprise("Apple");
+  /**
+   * Action concerné par le mail.
+   */
   private Action action = new ActionSimple("action", entreprise);
+  /**
+   * Quantite d'action.
+   */
   private static int QTE = 1;
   
   public EnvoiMailTest() {
   }
 
+  /**
+   * Méthode qui test l'envoi de mail.
+   */
   @Test
-  public void testSomeMethod() {
+  final void testMailMethod() {
     try (MockedStatic<Transport> utilities = Mockito.mockStatic(Transport.class)) {
       utilities.when(()-> Transport.send(Mockito.any())).thenAnswer((Answer<Void>) invocation -> null);
       EnvoiMail mail = new EnvoiMail();
