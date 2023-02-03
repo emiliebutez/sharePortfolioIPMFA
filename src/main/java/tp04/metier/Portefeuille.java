@@ -148,7 +148,11 @@ public void setHistotab(ArrayList<ArrayList<String>> histotab) {
   this.histotab = histotab;
 }
 
-//Methode qui permet d'obtenir la valeur du portefeuille à un jour donnée
+/**
+ * Methode qui permet d'obtenir la valeur totale du portefeuille à un jour donné
+ * @param j Jour
+ * @return la valeur totale du portefeuille
+ */
 public float valeurPtf(Jour j) {
   float total = 0;
   for (LignePortefeuille lp : this.mapLignes.values())
@@ -163,21 +167,94 @@ public float valeurPtf(Jour j) {
    * @param j Jour
    * @return 
    */
-  public float getMontantPF(Jour j) {
+  public ArrayList<ArrayList<String>>  getMontantPF(Jour j) {
     float valeurTotal = 0;
     float valeur = 0;
     float qte =0;
     float valeurTotalAction = 0;
-    for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet()) {
-      valeur = 0;
-      valeur = mapEntry.getValue().getAction().getCours(j); 
-      qte = +mapEntry.getValue().getQte();
-      valeurTotal = valeurTotal + (valeur*qte );
-      valeurTotalAction =  valeur * qte;
-      System.out.println("Action: "+mapEntry.getKey().getLibelle()+"   qte:"+mapEntry.getValue().getQte()+"   valeur"+mapEntry.getValue().getAction().getCours(j) +"  valeurTotalAction:"+valeurTotalAction);
-    }    
-    return valeurTotal;
+    ArrayList<ArrayList<String>> valeurAction = new ArrayList<ArrayList<String>>();
+    ArrayList <String> m = new  ArrayList <String>();
+    m.add(" ");
+    m.add(" ");
+    m.add("PorteFeuille");
+    m.add(" ");
+    m.add(" ");
+    valeurAction.add(m);
+    m.clear();
+    m.add("Action");
+    m.add(" Quantité");
+    m.add("Valeur ");
+    m.add(" Valeur totale");
+    m.add(" Valeur totale Action");
+    valeurAction.add(m);
+    m.clear();
+    for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet())
+   {
+         valeur = 0;
+         valeur = mapEntry.getValue().getAction().getCours(j); 
+         qte = +mapEntry.getValue().getQte();
+         valeurTotal = valeurTotal + (valeur*qte );
+         valeurTotalAction =  valeur * qte;
+         
+         m.add(mapEntry.getKey().getLibelle());
+         m.add(Float.toString(mapEntry.getValue().getQte()));
+         m.add(Float.toString(mapEntry.getValue().getAction().getCours(j)))  ;
+         m.add(Float.toString(valeurTotal));
+         m.add(Float.toString(valeurTotalAction));
+         valeurAction.add(m);
+         m.clear();
+   }
+       
+//      System.out.println("Action: "+mapEntry.getKey().getLibelle()+"   qte:"+mapEntry.getValue().getQte()+"   valeur"+mapEntry.getValue().getAction().getCours(j) +"  valeurTotalAction:"+valeurTotalAction);
+      
+//    }    
+
+    return valeurAction;
   }
+  /**
+   * Méthode qui retourne l'action qui a le cours le plus faible
+   * @param j Jour 
+   * @return ret
+   */
+  public ArrayList<String> actionMinValeur (Jour j){
+  Map.Entry<Action, LignePortefeuille> firstEntry = mapLignes.entrySet().iterator().next();
+  float minvaleur = firstEntry.getKey().getCours(j);
+  String minlib = firstEntry.getKey().getLibelle();
+  
+  for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet())
+  { if( minvaleur> mapEntry.getValue().getAction().getCours(j)){
+    minvaleur = mapEntry.getValue().getAction().getCours(j);
+    minlib = mapEntry.getValue().getAction().getLibelle();
+  }
+  }
+  ArrayList<String> ret = new ArrayList<String>();
+  ret.add(minlib);
+  ret.add(Float.toString(minvaleur));
+   return ret;
+ }
+  
+  /**
+   * Méthode qui retourne l'action qui a le cours le plus élevé
+   * @param j j Jour 
+   * @return  ret
+   */
+  public ArrayList<String> actionMaxValeur (Jour j){
+  Map.Entry<Action, LignePortefeuille> firstEntry = mapLignes.entrySet().iterator().next();
+  float maxvaleur = firstEntry.getKey().getCours(j);
+  String maxlib = firstEntry.getKey().getLibelle();
+  
+  for (Map.Entry<Action,LignePortefeuille> mapEntry: mapLignes.entrySet())
+  { if( maxvaleur< mapEntry.getValue().getAction().getCours(j)){
+    maxvaleur = mapEntry.getValue().getAction().getCours(j);
+    maxlib = mapEntry.getValue().getAction().getLibelle();
+  }
+  }
+  ArrayList<String> ret = new ArrayList<String>();
+  ret.add(maxlib);
+  ret.add(Float.toString(maxvaleur));
+   return ret;
+ }
+  
 
   /**
    * getter pour solde
@@ -194,4 +271,8 @@ public float valeurPtf(Jour j) {
   public Investisseur getInvest() {
     return invest;
   }
+
+  
+  
 }
+  
