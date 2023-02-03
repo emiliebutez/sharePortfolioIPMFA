@@ -23,7 +23,7 @@ public class Portefeuille {
    * @param mapLignes couple d'Action/LignePortefeuille
    */
   private float solde;
-  Map<Action, LignePortefeuille> mapLignes = new HashMap<>();;
+  Map<Action, LignePortefeuille> mapLignes = new HashMap<>();
   List<ArrayList<String>> histotab = new ArrayList<>();
   /**
    * Investisseur a qui appartient l'entreprise.
@@ -99,30 +99,30 @@ public class Portefeuille {
 
   //Methode d'achat d'une action
   public void acheter(Action a, int q, Jour j) {
-    if (q <= 0)
-    {
-      return;
-    } else if (!this.mapLignes.containsKey(a)){
-      if (a.verifierPouvoirAchat(this, a, j, q)){
-        this.mapLignes.put(a, new LignePortefeuille(a, q));
+    if (q > 0) {
+      if (!this.mapLignes.containsKey(a)){
+        if (a.verifierPouvoirAchat(this, a, j, q)){
+          this.mapLignes.put(a, new LignePortefeuille(a, q));
+          this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+          historique(a, j, q);
+          this.setSolde(solde - (a.getCours(j) * q));
+          a.getEntreprise().ajouterInvestisseur(this.invest);
+        }
+      }
+      else {
+        if (a.verifierPouvoirAchat(this, a, j, q)){
         this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+        a.getEntreprise().ajouterInvestisseur(this.invest);
         historique(a, j, q);
         this.setSolde(solde - (a.getCours(j) * q));
         a.getEntreprise().ajouterInvestisseur(this.invest);
-      }else{return;}
-    }else {
-      if (a.verifierPouvoirAchat(this, a, j, q)){
-      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
-      a.getEntreprise().ajouterInvestisseur(this.invest);
-      historique(a, j, q);
-      this.setSolde(solde - (a.getCours(j) * q));
-      a.getEntreprise().ajouterInvestisseur(this.invest);
-      EnvoiMail mail = new EnvoiMail();
-      mail.envoyerMail(this.invest.getEmailI(), a, q);
-    } else
-    {
-      this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
-      a.getEntreprise().ajouterInvestisseur(this.invest);
+        EnvoiMail mail = new EnvoiMail();
+        mail.envoyerMail(this.invest.getEmailI(), a, q);
+      } else
+      {
+        this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+        a.getEntreprise().ajouterInvestisseur(this.invest);
+      }
     }
   }
   }
@@ -137,9 +137,6 @@ public class Portefeuille {
       } else if (this.mapLignes.get(a).getQte() == q)
       {
         this.mapLignes.remove(a);
-      } else
-      {
-        return;
       }
     }
   }
@@ -224,16 +221,9 @@ public class Portefeuille {
          valeurAction.add((ArrayList<String>) m);
          m.clear();
    }
-       
-//      System.out.println("Action: "+mapEntry.getKey().getLibelle()+"   qte:"+mapEntry.getValue().getQte()+"   valeur"+mapEntry.getValue().getAction().getCours(j) +"  valeurTotalAction:"+valeurTotalAction);
-      
-//    }    
-
     return valeurAction;
-
-   
-
   }
+
   /**
    * Méthode qui retourne l'action qui a le cours le plus faible
    * @param j Jour 
